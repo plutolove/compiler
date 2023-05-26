@@ -1,6 +1,6 @@
 #pragma once
 
-namespace common {
+namespace util {
 
 class noncopyable {
  public:
@@ -11,4 +11,4 @@ class noncopyable {
   noncopyable& operator=(const noncopyable) = delete;
 };
 
-}  // namespace common
+}  // namespace util

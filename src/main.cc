@@ -20,7 +20,6 @@ ABSL_FLAG(std::string, conf, "default", "conf path");
 int main(int argc, char** argvs) {
   absl::ParseCommandLine(argc, argvs);
   std::cout << "flags: " << absl::GetFlag(FLAGS_conf) << std::endl;
-  spdlog::info("Hello, {}!", "World");
   INFO("test {}", "sdfgsdfg");
   WARN("sdfgsdfgsdfg");
   return 0;
