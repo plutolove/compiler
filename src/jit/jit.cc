@@ -14,6 +14,7 @@
 #include <llvm/IR/Type.h>
 #include <llvm/IRReader/IRReader.h>
 #include <llvm/MC/SubtargetFeature.h>
+#include <llvm/MC/TargetRegistry.h>
 #include <llvm/Support/DynamicLibrary.h>
 #include <llvm/Support/Host.h>
 #include <llvm/Support/SmallVectorMemoryBuffer.h>
@@ -29,10 +30,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "llvm/ADT/None.h"
-#include "llvm/MC/TargetRegistry.h"
-#include "llvm/Passes/PassBuilder.h"
-#include "llvm/Target/TargetMachine.h"
+#include "fmt/format.h"
 
 namespace sql {
 
@@ -361,6 +359,7 @@ SQLJit::CompiledModule SQLJit::compileModule(
 
   for (const auto &function : *module) {
     if (function.isDeclaration()) continue;
+    if (function.isDiscardableIfUnused()) continue;
 
     auto function_name = std::string(function.getName());
 
@@ -368,7 +367,9 @@ SQLJit::CompiledModule SQLJit::compileModule(
     auto jit_symbol = dynamic_linker.getSymbol(mangled_name);
 
     if (!jit_symbol) {
-      std::cout << "not found symbol {} after compilation" << std::endl;
+      std::cout << fmt::format("not found symbol {} after compilation",
+                               function_name)
+                << std::endl;
     }
 
     auto *jit_symbol_address =
@@ -421,16 +422,10 @@ void SQLJit::runOptimizationPassesOnModule(llvm::Module &module) const {
   pass_manager_builder.OptLevel = 3;
   pass_manager_builder.SLPVectorize = true;
   pass_manager_builder.LoopVectorize = true;
-  pass_manager_builder.LoopsInterleaved = true;
+  pass_manager_builder.RerollLoops = true;
   pass_manager_builder.VerifyInput = true;
   pass_manager_builder.VerifyOutput = true;
-  {
-    llvm::PipelineTuningOptions tuning_option;
-    tuning_option.LoopInterleaving = true;
-    tuning_option.LoopUnrolling = true;
-    tuning_option.LoopVectorization = true;
-    llvm::PassBuilder pass_builder(machine.get(), tuning_option);
-  }
+  machine->adjustPassManager(pass_manager_builder);
 
   fpm.add(llvm::createTargetTransformInfoWrapperPass(
       machine->getTargetIRAnalysis()));
@@ -452,7 +447,8 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
   std::call_once(llvm_target_initialized, []() {
     llvm::InitializeNativeTarget();
     llvm::InitializeNativeTargetAsmPrinter();
-    llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
+    std::string error;
+    llvm::sys::DynamicLibrary::getPermanentLibrary(nullptr);
   });
 
   std::string error;
