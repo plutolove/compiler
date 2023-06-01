@@ -17,7 +17,6 @@ rule("mlir_gen")
     before_build(function (target)
       print(os.getenv("LLVM_ROOT"))
       print(os.getenv("PATH"))
-      
       os.vrun("mlir-tblgen  --gen-op-decls ./src/ops.td -o ./src/Ops.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
       os.vrun("mlir-tblgen  --gen-op-defs ./src/ops.td -o ./src/Ops.cpp.inc -I"..os.getenv("LLVM_ROOT").."/include/")
       os.vrun("mlir-tblgen  --gen-dialect-decls ./src/ops.td -o ./src/Dialect.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
