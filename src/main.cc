@@ -10,12 +10,14 @@
 #include "absl/status/statusor.h"
 #include "absl/time/time.h"
 #include "antlr4-runtime.h"
+#include "common/exception.h"
 #include "common/log.h"
 #include "fmt/format.h"
 #include "jit/jit.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
+
 ABSL_FLAG(std::string, conf, "default", "conf path");
 
 int main(int argc, char** argvs) {

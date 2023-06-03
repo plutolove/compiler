@@ -206,9 +206,6 @@ class PageArena : private boost::noncopyable {
   }
 };
 
-/** MemoryManager for module.
- * Keep total allocated size during RuntimeDyld linker execution.
- */
 class JITModuleMemoryManager : public llvm::RTDyldMemoryManager {
  public:
   uint8_t *allocateCodeSection(uintptr_t size, unsigned alignment, unsigned,
