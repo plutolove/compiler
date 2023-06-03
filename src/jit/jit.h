@@ -8,12 +8,14 @@
 #include <mutex>
 #include <unordered_map>
 
+#include "common/noncopyable.h"
+
 namespace sql {
 class JITModuleMemoryManager;
 class JITSymbolResolver;
 class JITCompiler;
 
-class SQLJit {
+class SQLJit : public util::noncopyable {
  public:
   struct CompiledModule {
     // module size
