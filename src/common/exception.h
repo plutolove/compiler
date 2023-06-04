@@ -4,7 +4,7 @@
 
 #include "fmt/format.h"
 
-namespace util {
+namespace sql {
 
 class Exception : public std::exception {
  public:

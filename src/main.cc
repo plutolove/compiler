@@ -1,5 +1,6 @@
 #include <chrono>
 #include <iostream>
+#include <memory>
 #include <thread>
 
 #include "absl/flags/flag.h"
@@ -12,13 +13,16 @@
 #include "antlr4-runtime.h"
 #include "common/exception.h"
 #include "common/log.h"
+#include "common/type_cast.h"
 #include "fmt/format.h"
 #include "jit/jit.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
 #include "parser/SQLParserBaseVisitor.h"
+#include "parser/ast/ast_node.h"
 #include "parser/ast/binary_op.h"
+
 ABSL_FLAG(std::string, conf, "default", "conf path");
 
 int main(int argc, char** argvs) {
@@ -27,7 +31,9 @@ int main(int argc, char** argvs) {
   INFO("test {}", "sdfgsdfg");
   WARN("sdfgsdfgsdfg");
   auto& jit = sql::SQLJit::getInstance();
-  auto binary_op = std::make_shared<sql::BinaryOp>();
+  sql::AstNodePtr binary_op = std::make_shared<sql::BinaryOp>();
   INFO("{}", binary_op->toString());
+  auto binary_ptr = typeid_cast<std::shared_ptr<sql::BinaryOp>>(binary_op);
+  INFO("{}", binary_ptr->toString());
   return 0;
 }

@@ -1,6 +1,6 @@
 #include "common/exception.h"
 
-namespace util {
+namespace sql {
 
 Exception& Exception::operator=(const Exception& exc) {
   if (&exc != this) {
@@ -29,4 +29,4 @@ Exception::~Exception() noexcept {
   if (_pNested) delete _pNested;
 }
 
-}  // namespace util
+}  // namespace sql
