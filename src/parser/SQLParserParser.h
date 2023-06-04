@@ -75,17 +75,17 @@ public:
     RuleSelectClause = 8, RuleWhereClause = 9, RuleFromClause = 10, RuleSetQuantifier = 11, 
     RuleRelation = 12, RuleIdentifierList = 13, RuleIdentifierSeq = 14, 
     RuleOrderedIdentifierList = 15, RuleOrderedIdentifier = 16, RuleRelationPrimary = 17, 
-    RuleTableAlias = 18, RuleMultipartIdentifierList = 19, RuleMultipartIdentifier = 20, 
-    RuleNamedExpression = 21, RuleNamedExpressionSeq = 22, RuleExpression = 23, 
-    RuleBooleanExpression = 24, RulePredicate = 25, RuleValueExpression = 26, 
-    RulePrimaryExpression = 27, RuleConstant = 28, RuleComparisonOperator = 29, 
-    RuleArithmeticOperator = 30, RulePredicateOperator = 31, RuleBooleanValue = 32, 
-    RuleInterval = 33, RuleErrorCapturingMultiUnitsInterval = 34, RuleMultiUnitsInterval = 35, 
-    RuleErrorCapturingUnitToUnitInterval = 36, RuleUnitToUnitInterval = 37, 
-    RuleIntervalValue = 38, RuleDataType = 39, RuleWhenClause = 40, RuleQualifiedNameList = 41, 
-    RuleFunctionName = 42, RuleQualifiedName = 43, RuleIdentifier = 44, 
-    RuleStrictIdentifier = 45, RuleQuotedIdentifier = 46, RuleNumber = 47, 
-    RuleAnsiNonReserved = 48, RuleStrictNonReserved = 49, RuleNonReserved = 50
+    RuleTableAlias = 18, RuleMultipartIdentifier = 19, RuleNamedExpression = 20, 
+    RuleNamedExpressionSeq = 21, RuleExpression = 22, RuleBooleanExpression = 23, 
+    RulePredicate = 24, RuleValueExpression = 25, RulePrimaryExpression = 26, 
+    RuleConstant = 27, RuleComparisonOperator = 28, RuleArithmeticOperator = 29, 
+    RulePredicateOperator = 30, RuleBooleanValue = 31, RuleInterval = 32, 
+    RuleErrorCapturingMultiUnitsInterval = 33, RuleMultiUnitsInterval = 34, 
+    RuleErrorCapturingUnitToUnitInterval = 35, RuleUnitToUnitInterval = 36, 
+    RuleIntervalValue = 37, RuleDataType = 38, RuleWhenClause = 39, RuleQualifiedNameList = 40, 
+    RuleFunctionName = 41, RuleQualifiedName = 42, RuleIdentifier = 43, 
+    RuleStrictIdentifier = 44, RuleQuotedIdentifier = 45, RuleNumber = 46, 
+    RuleAnsiNonReserved = 47, RuleStrictNonReserved = 48, RuleNonReserved = 49
   };
 
   explicit SQLParserParser(antlr4::TokenStream *input);
@@ -124,7 +124,6 @@ public:
   class OrderedIdentifierContext;
   class RelationPrimaryContext;
   class TableAliasContext;
-  class MultipartIdentifierListContext;
   class MultipartIdentifierContext;
   class NamedExpressionContext;
   class NamedExpressionSeqContext;
@@ -360,8 +359,7 @@ public:
     FromClauseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *FROM();
-    std::vector<RelationContext *> relation();
-    RelationContext* relation(size_t i);
+    RelationContext *relation();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -470,16 +468,6 @@ public:
    
   };
 
-  class  AliasedRelationContext : public RelationPrimaryContext {
-  public:
-    AliasedRelationContext(RelationPrimaryContext *ctx);
-
-    RelationContext *relation();
-    TableAliasContext *tableAlias();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  AliasedQueryContext : public RelationPrimaryContext {
   public:
     AliasedQueryContext(RelationPrimaryContext *ctx);
@@ -508,7 +496,6 @@ public:
     virtual size_t getRuleIndex() const override;
     StrictIdentifierContext *strictIdentifier();
     antlr4::tree::TerminalNode *AS();
-    IdentifierListContext *identifierList();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -516,20 +503,6 @@ public:
   };
 
   TableAliasContext* tableAlias();
-
-  class  MultipartIdentifierListContext : public antlr4::ParserRuleContext {
-  public:
-    MultipartIdentifierListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<MultipartIdentifierContext *> multipartIdentifier();
-    MultipartIdentifierContext* multipartIdentifier(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  MultipartIdentifierListContext* multipartIdentifierList();
 
   class  MultipartIdentifierContext : public antlr4::ParserRuleContext {
   public:

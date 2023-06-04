@@ -60,11 +60,7 @@ public:
 
     virtual std::any visitAliasedQuery(SQLParserParser::AliasedQueryContext *context) = 0;
 
-    virtual std::any visitAliasedRelation(SQLParserParser::AliasedRelationContext *context) = 0;
-
     virtual std::any visitTableAlias(SQLParserParser::TableAliasContext *context) = 0;
-
-    virtual std::any visitMultipartIdentifierList(SQLParserParser::MultipartIdentifierListContext *context) = 0;
 
     virtual std::any visitMultipartIdentifier(SQLParserParser::MultipartIdentifierContext *context) = 0;
 

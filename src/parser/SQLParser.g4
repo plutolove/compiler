@@ -50,7 +50,7 @@ whereClause
     ;
 
 fromClause
-    : FROM relation (',' relation)*
+    : FROM relation
     ;
 
 setQuantifier
@@ -81,15 +81,10 @@ orderedIdentifier
 relationPrimary
     : multipartIdentifier tableAlias  #tableName
     | '(' query ')' tableAlias        #aliasedQuery
-    | '(' relation ')' tableAlias     #aliasedRelation
     ;
 
 tableAlias
-    : (AS? strictIdentifier identifierList?)?
-    ;
-
-multipartIdentifierList
-    : multipartIdentifier (',' multipartIdentifier)*
+    : (AS? strictIdentifier)
     ;
 
 multipartIdentifier

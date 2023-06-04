@@ -97,15 +97,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitAliasedRelation(SQLParserParser::AliasedRelationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitTableAlias(SQLParserParser::TableAliasContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitMultipartIdentifierList(SQLParserParser::MultipartIdentifierListContext *ctx) override {
     return visitChildren(ctx);
   }
 
