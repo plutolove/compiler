@@ -33,6 +33,9 @@ std::enable_if_t<std::is_pointer_v<To>, To> type_cast(From* from) {
   } catch (const std::exception& e) {
     throw sql::Exception(-1, e.what());
   }
+  throw sql::Exception(-1, "Bad cast from type {} to {}",
+                       demangle(typeid(from).name()),
+                       demangle(typeid(To).name()));
 }
 
 namespace detail {
@@ -60,4 +63,7 @@ std::enable_if_t<detail::is_shared_ptr_v<To>, To> type_cast(
   } catch (const std::exception& e) {
     throw sql::Exception(-1, e.what());
   }
+  throw sql::Exception(-1, "Bad cast from type {} to {}",
+                       demangle(typeid(from).name()),
+                       demangle(typeid(To).name()));
 }
