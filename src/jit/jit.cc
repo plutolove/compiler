@@ -30,6 +30,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "common/exception.h"
 #include "fmt/format.h"
 
 namespace sql {
@@ -49,7 +50,7 @@ class JITCompiler {
                       [&](const llvm::ErrorInfoBase &error_info) {
                         error_message = error_info.message();
                       });
-      std::cout << "Cannot materialize module: " << error_message << std::endl;
+      throw util::Exception(-1, "Cannot materialize module: {}", error_message);
     }
 
     llvm::SmallVector<char, 4096> object_buffer;
@@ -60,7 +61,8 @@ class JITCompiler {
 
     if (target_machine.addPassesToEmitMC(pass_manager, machine_code_context,
                                          object_stream)) {
-      std::cout << "MachineCode is not supported for the platform" << std::endl;
+      throw util::Exception(-1,
+                            "MachineCode is not supported for the platform");
     }
 
     pass_manager.run(module);
@@ -79,21 +81,11 @@ class JITCompiler {
   llvm::TargetMachine &target_machine;
 };
 
-/** Arena that allocate all memory with system page_size.
- * All allocated pages can be protected with protection_flags using protect
- * method. During destruction all allocated pages protection_flags will be
- * reset.
- */
 class PageArena : private boost::noncopyable {
  public:
   PageArena() : page_size(GetPageSize()) {}
 
   char *allocate(size_t size, size_t alignment) {
-    /** First check if in some allocated page blocks there are enough free
-     * memory to make allocation. If there is no such block create it and then
-     * allocate from it.
-     */
-
     for (size_t i = 0; i < page_blocks.size(); ++i) {
       char *result = tryAllocateFromPageBlockWithIndex(size, alignment, i);
       if (result) return result;
@@ -119,10 +111,6 @@ class PageArena : private boost::noncopyable {
   }
 
   void protect(int protection_flags) {
-    /** The code is partially based on the LLVM codebase
-     * The LLVM Project is under the Apache License v2.0 with LLVM Exceptions.
-     */
-
     bool invalidate_cache = (protection_flags & PROT_EXEC);
 
     for (const auto &block : page_blocks) {
@@ -256,7 +244,7 @@ class JITSymbolResolver : public llvm::LegacyJITSymbolResolver {
   llvm::JITSymbol findSymbol(const std::string &Name) override {
     auto address_it = symbol_name_to_symbol_address.find(Name);
     if (address_it == symbol_name_to_symbol_address.end()) {
-      std::cout << "symbol not found: " << Name << std::endl;
+      throw util::Exception(-1, "symbol not found {}", Name);
     }
 
     uint64_t symbol_address = reinterpret_cast<uint64_t>(address_it->second);
@@ -338,8 +326,9 @@ SQLJit::CompiledModule SQLJit::compileModule(
                     [&](const llvm::ErrorInfoBase &error_info) {
                       error_message = error_info.message();
                     });
-    std::cout << "Cannot create object file from compiled buffer: "
-              << error_message << std::endl;
+    throw util::Exception(-1,
+                          "Cannot create object file from compiled buffer: {}",
+                          error_message);
   }
 
   std::unique_ptr<JITModuleMemoryManager> module_memory_manager =
@@ -362,13 +351,9 @@ SQLJit::CompiledModule SQLJit::compileModule(
 
     auto mangled_name = getMangledName(function_name);
     auto jit_symbol = dynamic_linker.getSymbol(mangled_name);
-
-    if (!jit_symbol) {
-      std::cout << fmt::format("not found symbol {} after compilation",
-                               function_name)
-                << std::endl;
-    }
-
+    if (not jit_symbol)
+      throw util::Exception(-1, "not found symbol {} after compilation",
+                            function_name);
     auto *jit_symbol_address =
         reinterpret_cast<void *>(jit_symbol.getAddress());
     compiled_module.function_name_to_symbol.emplace(std::move(function_name),
@@ -391,7 +376,7 @@ void SQLJit::deleteCompiledModule(const SQLJit::CompiledModule &module) {
 
   auto module_it = module_identifier_to_memory_manager.find(module.identifier);
   if (module_it == module_identifier_to_memory_manager.end()) {
-    std::cout << "module not found" << std::endl;
+    throw util::Exception(-1, "module not found");
   }
   module_identifier_to_memory_manager.erase(module_it);
   compiled_code_size.fetch_sub(module.size, std::memory_order_relaxed);
@@ -453,7 +438,7 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
   auto triple = llvm::sys::getProcessTriple();
   const auto *target = llvm::TargetRegistry::lookupTarget(triple, error);
   if (!target) {
-    std::cout << "Cannot find target triple" << std::endl;
+    throw util::Exception(-1, "Cannot find target triple");
   }
 
   llvm::SubtargetFeatures features;
@@ -469,7 +454,7 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
       llvm::CodeGenOpt::Aggressive, jit);
 
   if (!target_machine) {
-    std::cout << "Cannot create target machine" << std::endl;
+    throw util::Exception(-1, "Cannot create target machine");
   }
 
   return std::unique_ptr<llvm::TargetMachine>(target_machine);
