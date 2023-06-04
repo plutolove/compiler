@@ -125,7 +125,7 @@ valueExpression
     : primaryExpression                                                                      #valueExpressionDefault
     | operator=(MINUS | PLUS | TILDE) valueExpression                                        #arithmeticUnary
     | left=valueExpression operator=(ASTERISK | SLASH | PERCENT | DIV) right=valueExpression #arithmeticBinary
-    | left=valueExpression operator=(PLUS | MINUS | CONCAT_PIPE) right=valueExpression       #arithmeticBinary
+    | left=valueExpression operator=(PLUS | MINUS) right=valueExpression       #arithmeticBinary
     | left=valueExpression operator=AMPERSAND right=valueExpression                          #arithmeticBinary
     | left=valueExpression operator=HAT right=valueExpression                                #arithmeticBinary
     | left=valueExpression operator=PIPE right=valueExpression                               #arithmeticBinary
@@ -163,11 +163,11 @@ constant
     ;
 
 comparisonOperator
-    : EQ | NEQ | NEQJ | LT | LTE | GT | GTE | NSEQ
+    : EQ | NEQ | LT | LTE | GT | GTE
     ;
 
 arithmeticOperator
-    : PLUS | MINUS | ASTERISK | SLASH | PERCENT | DIV | TILDE | AMPERSAND | PIPE | CONCAT_PIPE | HAT
+    : PLUS | MINUS | ASTERISK | SLASH | PERCENT | DIV | TILDE | AMPERSAND | PIPE | HAT
     ;
 
 predicateOperator
@@ -939,9 +939,7 @@ WINDOW: 'WINDOW';
 WITH: 'WITH';
 
 EQ  : '=' | '==';
-NSEQ: '<=>';
-NEQ : '<>';
-NEQJ: '!=';
+NEQ : '<>' | '!=';
 LT  : '<';
 LTE : '<=' | '!>';
 GT  : '>';
@@ -955,7 +953,6 @@ PERCENT: '%';
 TILDE: '~';
 AMPERSAND: '&';
 PIPE: '|';
-CONCAT_PIPE: '||';
 HAT: '^';
 
 STRING

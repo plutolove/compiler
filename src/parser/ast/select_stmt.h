@@ -3,8 +3,8 @@
 
 namespace sql {
 
-struct SelectStmt : AstNode {
-  SelectStmt() : AstNode() {}
+struct SelectStmt : public AstNode {
+  SelectStmt() : AstNode(AstNodeType::SelectStmt) {}
   virtual std::string toString() const;
 };
 

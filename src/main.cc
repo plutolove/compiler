@@ -18,6 +18,7 @@
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
 #include "parser/SQLParserBaseVisitor.h"
+#include "parser/ast/binary_op.h"
 ABSL_FLAG(std::string, conf, "default", "conf path");
 
 int main(int argc, char** argvs) {
@@ -26,5 +27,7 @@ int main(int argc, char** argvs) {
   INFO("test {}", "sdfgsdfg");
   WARN("sdfgsdfgsdfg");
   auto& jit = sql::SQLJit::getInstance();
+  auto binary_op = std::make_shared<sql::BinaryOp>();
+  INFO("{}", binary_op->toString());
   return 0;
 }

@@ -59,14 +59,14 @@ public:
     UNARCHIVE = 236, UNBOUNDED = 237, UNCACHE = 238, UNION = 239, UNIQUE = 240, 
     UNKNOWN = 241, UNLOCK = 242, UNSET = 243, UPDATE = 244, USE = 245, USER = 246, 
     USING = 247, VALUES = 248, VIEW = 249, VIEWS = 250, WHEN = 251, WHERE = 252, 
-    WINDOW = 253, WITH = 254, EQ = 255, NSEQ = 256, NEQ = 257, NEQJ = 258, 
-    LT = 259, LTE = 260, GT = 261, GTE = 262, PLUS = 263, MINUS = 264, ASTERISK = 265, 
-    SLASH = 266, PERCENT = 267, TILDE = 268, AMPERSAND = 269, PIPE = 270, 
-    CONCAT_PIPE = 271, HAT = 272, STRING = 273, BIGINT_LITERAL = 274, SMALLINT_LITERAL = 275, 
-    TINYINT_LITERAL = 276, INTEGER_VALUE = 277, EXPONENT_VALUE = 278, DECIMAL_VALUE = 279, 
-    DOUBLE_LITERAL = 280, BIGDECIMAL_LITERAL = 281, IDENTIFIER = 282, BACKQUOTED_IDENTIFIER = 283, 
-    SIMPLE_COMMENT = 284, BRACKETED_EMPTY_COMMENT = 285, BRACKETED_COMMENT = 286, 
-    WS = 287, UNRECOGNIZED = 288
+    WINDOW = 253, WITH = 254, EQ = 255, NEQ = 256, LT = 257, LTE = 258, 
+    GT = 259, GTE = 260, PLUS = 261, MINUS = 262, ASTERISK = 263, SLASH = 264, 
+    PERCENT = 265, TILDE = 266, AMPERSAND = 267, PIPE = 268, HAT = 269, 
+    STRING = 270, BIGINT_LITERAL = 271, SMALLINT_LITERAL = 272, TINYINT_LITERAL = 273, 
+    INTEGER_VALUE = 274, EXPONENT_VALUE = 275, DECIMAL_VALUE = 276, DOUBLE_LITERAL = 277, 
+    BIGDECIMAL_LITERAL = 278, IDENTIFIER = 279, BACKQUOTED_IDENTIFIER = 280, 
+    SIMPLE_COMMENT = 281, BRACKETED_EMPTY_COMMENT = 282, BRACKETED_COMMENT = 283, 
+    WS = 284, UNRECOGNIZED = 285
   };
 
   enum {
@@ -702,7 +702,6 @@ public:
     antlr4::tree::TerminalNode *DIV();
     antlr4::tree::TerminalNode *PLUS();
     antlr4::tree::TerminalNode *MINUS();
-    antlr4::tree::TerminalNode *CONCAT_PIPE();
     antlr4::tree::TerminalNode *AMPERSAND();
     antlr4::tree::TerminalNode *HAT();
     antlr4::tree::TerminalNode *PIPE();
@@ -1016,12 +1015,10 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *EQ();
     antlr4::tree::TerminalNode *NEQ();
-    antlr4::tree::TerminalNode *NEQJ();
     antlr4::tree::TerminalNode *LT();
     antlr4::tree::TerminalNode *LTE();
     antlr4::tree::TerminalNode *GT();
     antlr4::tree::TerminalNode *GTE();
-    antlr4::tree::TerminalNode *NSEQ();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -1043,7 +1040,6 @@ public:
     antlr4::tree::TerminalNode *TILDE();
     antlr4::tree::TerminalNode *AMPERSAND();
     antlr4::tree::TerminalNode *PIPE();
-    antlr4::tree::TerminalNode *CONCAT_PIPE();
     antlr4::tree::TerminalNode *HAT();
 
 
