@@ -620,8 +620,6 @@ public:
     SQLParserParser::ValueExpressionContext *lower = nullptr;
     SQLParserParser::ValueExpressionContext *upper = nullptr;
     SQLParserParser::ValueExpressionContext *pattern = nullptr;
-    antlr4::Token *escapeChar = nullptr;
-    SQLParserParser::ValueExpressionContext *right = nullptr;
     PredicateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *AND();
@@ -633,17 +631,7 @@ public:
     ExpressionContext* expression(size_t i);
     antlr4::tree::TerminalNode *IN();
     QueryContext *query();
-    antlr4::tree::TerminalNode *RLIKE();
     antlr4::tree::TerminalNode *LIKE();
-    antlr4::tree::TerminalNode *ESCAPE();
-    antlr4::tree::TerminalNode *STRING();
-    antlr4::tree::TerminalNode *IS();
-    antlr4::tree::TerminalNode *NULL_();
-    antlr4::tree::TerminalNode *TRUE();
-    antlr4::tree::TerminalNode *FALSE();
-    antlr4::tree::TerminalNode *UNKNOWN();
-    antlr4::tree::TerminalNode *FROM();
-    antlr4::tree::TerminalNode *DISTINCT();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -737,19 +725,6 @@ public:
    
   };
 
-  class  StructContext : public PrimaryExpressionContext {
-  public:
-    StructContext(PrimaryExpressionContext *ctx);
-
-    SQLParserParser::NamedExpressionContext *namedExpressionContext = nullptr;
-    std::vector<NamedExpressionContext *> argument;
-    antlr4::tree::TerminalNode *STRUCT();
-    std::vector<NamedExpressionContext *> namedExpression();
-    NamedExpressionContext* namedExpression(size_t i);
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  DereferenceContext : public PrimaryExpressionContext {
   public:
     DereferenceContext(PrimaryExpressionContext *ctx);
@@ -804,8 +779,6 @@ public:
 
     antlr4::tree::TerminalNode *LAST();
     ExpressionContext *expression();
-    antlr4::tree::TerminalNode *IGNORE();
-    antlr4::tree::TerminalNode *NULLS();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -837,17 +810,6 @@ public:
     SubqueryExpressionContext(PrimaryExpressionContext *ctx);
 
     QueryContext *query();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  CurrentDatetimeContext : public PrimaryExpressionContext {
-  public:
-    CurrentDatetimeContext(PrimaryExpressionContext *ctx);
-
-    antlr4::Token *name = nullptr;
-    antlr4::tree::TerminalNode *CURRENT_DATE();
-    antlr4::tree::TerminalNode *CURRENT_TIMESTAMP();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -930,8 +892,6 @@ public:
 
     antlr4::tree::TerminalNode *FIRST();
     ExpressionContext *expression();
-    antlr4::tree::TerminalNode *IGNORE();
-    antlr4::tree::TerminalNode *NULLS();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };

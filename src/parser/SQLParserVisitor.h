@@ -86,8 +86,6 @@ public:
 
     virtual std::any visitArithmeticUnary(SQLParserParser::ArithmeticUnaryContext *context) = 0;
 
-    virtual std::any visitStruct(SQLParserParser::StructContext *context) = 0;
-
     virtual std::any visitDereference(SQLParserParser::DereferenceContext *context) = 0;
 
     virtual std::any visitSimpleCase(SQLParserParser::SimpleCaseContext *context) = 0;
@@ -103,8 +101,6 @@ public:
     virtual std::any visitSubscript(SQLParserParser::SubscriptContext *context) = 0;
 
     virtual std::any visitSubqueryExpression(SQLParserParser::SubqueryExpressionContext *context) = 0;
-
-    virtual std::any visitCurrentDatetime(SQLParserParser::CurrentDatetimeContext *context) = 0;
 
     virtual std::any visitCast(SQLParserParser::CastContext *context) = 0;
 

@@ -4,15 +4,18 @@
 namespace sql {
 // TILDE: '~';
 struct UnaryOp : public AstNode {
-  enum class UnaryOpType : int16_t {
+  enum class UnaryOpType : int8_t {
     Unknow,
     // arithmetic
     PLUS,
     MINUS,
     TILDE,
+    // logical
+    NOT
   };
-  UnaryOp(); 
-  UnaryOp(UnaryOpType opt, const AstNodePtr& value); 
+
+  UnaryOp();
+  UnaryOp(UnaryOpType opt, const AstNodePtr& value);
   UnaryOpType opt_{UnaryOpType::Unknow};
   AstNodePtr value_{nullptr};
 };

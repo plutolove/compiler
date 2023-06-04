@@ -13,7 +13,8 @@ enum class AstNodeType : int32_t {
   Unknow = 0,
   SelectStmt,
   BinaryOP,
-  UnaryOp
+  UnaryOp,
+  FunctionCall
 };
 
 struct AstNode {

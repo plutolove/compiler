@@ -149,10 +149,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitStruct(SQLParserParser::StructContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitDereference(SQLParserParser::DereferenceContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -182,10 +178,6 @@ public:
   }
 
   virtual std::any visitSubqueryExpression(SQLParserParser::SubqueryExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitCurrentDatetime(SQLParserParser::CurrentDatetimeContext *ctx) override {
     return visitChildren(ctx);
   }
 

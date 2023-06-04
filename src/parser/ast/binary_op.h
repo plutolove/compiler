@@ -24,7 +24,7 @@ PIPE: '|';
 HAT: '^';
 */
 struct BinaryOp : public AstNode {
-  enum class BinaryOpType : int16_t {
+  enum class BinaryOpType : int8_t {
     Unknow,
     // cmp
     EQ,
@@ -44,9 +44,14 @@ struct BinaryOp : public AstNode {
     HAT,
     // logical
     AND,
-    OR
+    OR,
+    // in
+    IN,
+    // subscript: array[i], map[key]
+    SUBSCRIPT,
   };
-  BinaryOp(); 
+
+  BinaryOp();
   BinaryOp(const AstNodePtr& left, BinaryOpType opt, const AstNodePtr& right);
   AstNodePtr left_{nullptr};
   BinaryOpType opt_{BinaryOpType::Unknow};
