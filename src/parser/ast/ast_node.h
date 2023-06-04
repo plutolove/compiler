@@ -21,7 +21,9 @@ struct AstNode {
   AstNode() : ntype_(AstNodeType::Unknow) {}
   AstNode(AstNodeType type) : ntype_(type) {}
   virtual ~AstNode() = default;
+
   virtual std::string toString() const { return "AstNde"; }
+
   AstNodeType getType() const { return ntype_; }
 
   AstNodeType ntype_;

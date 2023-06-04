@@ -53,6 +53,7 @@ struct BinaryOp : public AstNode {
 
   BinaryOp();
   BinaryOp(const AstNodePtr& left, BinaryOpType opt, const AstNodePtr& right);
+
   AstNodePtr left_{nullptr};
   BinaryOpType opt_{BinaryOpType::Unknow};
   AstNodePtr right_{nullptr};

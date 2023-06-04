@@ -7,6 +7,6 @@ namespace sql {
 UnaryOp::UnaryOp() : AstNode(AstNodeType::UnaryOp) {}
 
 UnaryOp::UnaryOp(UnaryOpType opt, const AstNodePtr& value)
-    :AstNode(AstNodeType::UnaryOp), opt_(opt), value_(value) {}
+    : AstNode(AstNodeType::UnaryOp), opt_(opt), value_(value) {}
 
 }  // namespace sql
