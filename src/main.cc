@@ -33,7 +33,7 @@ int main(int argc, char** argvs) {
   auto& jit = sql::SQLJit::getInstance();
   sql::AstNodePtr binary_op = std::make_shared<sql::BinaryOp>();
   INFO("{}", binary_op->toString());
-  auto binary_ptr = typeid_cast<std::shared_ptr<sql::BinaryOp>>(binary_op);
+  auto binary_ptr = type_cast<std::shared_ptr<sql::BinaryOp>>(binary_op);
   INFO("{}", binary_ptr->toString());
   return 0;
 }
