@@ -15,7 +15,7 @@ class JITModuleMemoryManager;
 class JITSymbolResolver;
 class JITCompiler;
 
-class SQLJit : public util::noncopyable {
+class SQLJit : public noncopyable {
  public:
   struct CompiledModule {
     // module size
