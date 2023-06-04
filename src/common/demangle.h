@@ -3,12 +3,9 @@
 #include <memory>
 #include <string>
 
-std::string demangle(const char* name, int& status);
+namespace detail {
 
-inline std::string demangle(const char* name) {
-  int status = 0;
-  return demangle(name, status);
-}
+std::string demangle(const char* name, int& status);
 
 struct FreeingDeleter {
   template <typename PointerType>
@@ -20,3 +17,9 @@ struct FreeingDeleter {
 typedef std::unique_ptr<char, FreeingDeleter> DemangleResult;
 
 DemangleResult tryDemangle(const char* name);
+}  // namespace detail
+
+inline std::string demangle(const char* name) {
+  int status = 0;
+  return detail::demangle(name, status);
+}
