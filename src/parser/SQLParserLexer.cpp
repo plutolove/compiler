@@ -1,8 +1,8 @@
 
-// Generated from ./src/parser/sql_parser.g4 by ANTLR 4.12.0
+// Generated from ./src/parser/SQLParser.g4 by ANTLR 4.12.0
 
 
-#include "sql_parserLexer.h"
+#include "SQLParserLexer.h"
 
 
 using namespace antlr4;
@@ -14,8 +14,8 @@ using namespace antlr4;
 
 namespace {
 
-struct Sql_parserLexerStaticData final {
-  Sql_parserLexerStaticData(std::vector<std::string> ruleNames,
+struct SQLParserLexerStaticData final {
+  SQLParserLexerStaticData(std::vector<std::string> ruleNames,
                           std::vector<std::string> channelNames,
                           std::vector<std::string> modeNames,
                           std::vector<std::string> literalNames,
@@ -25,10 +25,10 @@ struct Sql_parserLexerStaticData final {
         symbolicNames(std::move(symbolicNames)),
         vocabulary(this->literalNames, this->symbolicNames) {}
 
-  Sql_parserLexerStaticData(const Sql_parserLexerStaticData&) = delete;
-  Sql_parserLexerStaticData(Sql_parserLexerStaticData&&) = delete;
-  Sql_parserLexerStaticData& operator=(const Sql_parserLexerStaticData&) = delete;
-  Sql_parserLexerStaticData& operator=(Sql_parserLexerStaticData&&) = delete;
+  SQLParserLexerStaticData(const SQLParserLexerStaticData&) = delete;
+  SQLParserLexerStaticData(SQLParserLexerStaticData&&) = delete;
+  SQLParserLexerStaticData& operator=(const SQLParserLexerStaticData&) = delete;
+  SQLParserLexerStaticData& operator=(SQLParserLexerStaticData&&) = delete;
 
   std::vector<antlr4::dfa::DFA> decisionToDFA;
   antlr4::atn::PredictionContextCache sharedContextCache;
@@ -42,12 +42,12 @@ struct Sql_parserLexerStaticData final {
   std::unique_ptr<antlr4::atn::ATN> atn;
 };
 
-::antlr4::internal::OnceFlag sql_parserlexerLexerOnceFlag;
-Sql_parserLexerStaticData *sql_parserlexerLexerStaticData = nullptr;
+::antlr4::internal::OnceFlag sqlparserlexerLexerOnceFlag;
+SQLParserLexerStaticData *sqlparserlexerLexerStaticData = nullptr;
 
-void sql_parserlexerLexerInitialize() {
-  assert(sql_parserlexerLexerStaticData == nullptr);
-  auto staticData = std::make_unique<Sql_parserLexerStaticData>(
+void sqlparserlexerLexerInitialize() {
+  assert(sqlparserlexerLexerStaticData == nullptr);
+  auto staticData = std::make_unique<SQLParserLexerStaticData>(
     std::vector<std::string>{
       "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "ADD", 
       "AFTER", "ALL", "ALTER", "ANALYZE", "AND", "ANTI", "ANY", "ARCHIVE", 
@@ -1145,51 +1145,51 @@ void sql_parserlexerLexerInitialize() {
   for (size_t i = 0; i < count; i++) { 
     staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
   }
-  sql_parserlexerLexerStaticData = staticData.release();
+  sqlparserlexerLexerStaticData = staticData.release();
 }
 
 }
 
-sql_parserLexer::sql_parserLexer(CharStream *input) : Lexer(input) {
-  sql_parserLexer::initialize();
-  _interpreter = new atn::LexerATNSimulator(this, *sql_parserlexerLexerStaticData->atn, sql_parserlexerLexerStaticData->decisionToDFA, sql_parserlexerLexerStaticData->sharedContextCache);
+SQLParserLexer::SQLParserLexer(CharStream *input) : Lexer(input) {
+  SQLParserLexer::initialize();
+  _interpreter = new atn::LexerATNSimulator(this, *sqlparserlexerLexerStaticData->atn, sqlparserlexerLexerStaticData->decisionToDFA, sqlparserlexerLexerStaticData->sharedContextCache);
 }
 
-sql_parserLexer::~sql_parserLexer() {
+SQLParserLexer::~SQLParserLexer() {
   delete _interpreter;
 }
 
-std::string sql_parserLexer::getGrammarFileName() const {
-  return "sql_parser.g4";
+std::string SQLParserLexer::getGrammarFileName() const {
+  return "SQLParser.g4";
 }
 
-const std::vector<std::string>& sql_parserLexer::getRuleNames() const {
-  return sql_parserlexerLexerStaticData->ruleNames;
+const std::vector<std::string>& SQLParserLexer::getRuleNames() const {
+  return sqlparserlexerLexerStaticData->ruleNames;
 }
 
-const std::vector<std::string>& sql_parserLexer::getChannelNames() const {
-  return sql_parserlexerLexerStaticData->channelNames;
+const std::vector<std::string>& SQLParserLexer::getChannelNames() const {
+  return sqlparserlexerLexerStaticData->channelNames;
 }
 
-const std::vector<std::string>& sql_parserLexer::getModeNames() const {
-  return sql_parserlexerLexerStaticData->modeNames;
+const std::vector<std::string>& SQLParserLexer::getModeNames() const {
+  return sqlparserlexerLexerStaticData->modeNames;
 }
 
-const dfa::Vocabulary& sql_parserLexer::getVocabulary() const {
-  return sql_parserlexerLexerStaticData->vocabulary;
+const dfa::Vocabulary& SQLParserLexer::getVocabulary() const {
+  return sqlparserlexerLexerStaticData->vocabulary;
 }
 
-antlr4::atn::SerializedATNView sql_parserLexer::getSerializedATN() const {
-  return sql_parserlexerLexerStaticData->serializedATN;
+antlr4::atn::SerializedATNView SQLParserLexer::getSerializedATN() const {
+  return sqlparserlexerLexerStaticData->serializedATN;
 }
 
-const atn::ATN& sql_parserLexer::getATN() const {
-  return *sql_parserlexerLexerStaticData->atn;
+const atn::ATN& SQLParserLexer::getATN() const {
+  return *sqlparserlexerLexerStaticData->atn;
 }
 
 
 
 
-void sql_parserLexer::initialize() {
-  ::antlr4::internal::call_once(sql_parserlexerLexerOnceFlag, sql_parserlexerLexerInitialize);
+void SQLParserLexer::initialize() {
+  ::antlr4::internal::call_once(sqlparserlexerLexerOnceFlag, sqlparserlexerLexerInitialize);
 }

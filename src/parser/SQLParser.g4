@@ -1,20 +1,4 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * This file is an adaptation of Presto's presto-parser/src/main/antlr4/com/facebook/presto/sql/parser/SqlBase.g4 grammar.
- */
-
-grammar sql_parser;
+grammar SQLParser;
 
 
 singleStatement
@@ -378,18 +362,7 @@ alterColumnAction
     | setOrDrop=(SET | DROP) NOT NULL
     ;
 
-// When `SQL_standard_keyword_behavior=true`, there are 2 kinds of keywords in Spark SQL.
-// - Reserved keywords:
-//     Keywords that are reserved and can't be used as identifiers for table, view, column,
-//     function, alias, etc.
-// - Non-reserved keywords:
-//     Keywords that have a special meaning only in particular contexts and can be used as
-//     identifiers in other contexts. For example, `EXPLAIN SELECT ...` is a command, but EXPLAIN
-//     can be used as identifiers in other places.
-// You can find the full keywords list by searching "Start of the keywords list" in this file.
-// The non-reserved keywords are listed below. Keywords not in this list are reserved keywords.
 ansiNonReserved
-//--ANSI-NON-RESERVED-START
     : ADD
     | AFTER
     | ALTER
@@ -569,18 +542,8 @@ ansiNonReserved
     | VIEW
     | VIEWS
     | WINDOW
-//--ANSI-NON-RESERVED-END
     ;
 
-// When `SQL_standard_keyword_behavior=false`, there are 2 kinds of keywords in Spark SQL.
-// - Non-reserved keywords:
-//     Same definition as the one when `SQL_standard_keyword_behavior=true`.
-// - Strict-non-reserved keywords:
-//     A strict version of non-reserved keywords, which can not be used as table alias.
-// You can find the full keywords list by searching "Start of the keywords list" in this file.
-// The strict-non-reserved keywords are listed in `strictNonReserved`.
-// The non-reserved keywords are listed in `nonReserved`.
-// These 2 together contain all the keywords.
 strictNonReserved
     : ANTI
     | CROSS
@@ -600,7 +563,6 @@ strictNonReserved
     ;
 
 nonReserved
-//--DEFAULT-NON-RESERVED-START
     : ADD
     | AFTER
     | ALL
@@ -833,16 +795,8 @@ nonReserved
     | WHERE
     | WINDOW
     | WITH
-//--DEFAULT-NON-RESERVED-END
     ;
 
-// NOTE: If you add a new token in the list below, you should update the list of keywords
-// and reserved tag in `docs/sql-ref-ansi-compliance.md#sql-keywords`.
-
-//============================
-// Start of the keywords list
-//============================
-//--SPARK-KEYWORD-LIST-START
 ADD: 'ADD';
 AFTER: 'AFTER';
 ALL: 'ALL';
@@ -1090,10 +1044,6 @@ WHEN: 'WHEN';
 WHERE: 'WHERE';
 WINDOW: 'WINDOW';
 WITH: 'WITH';
-//--SPARK-KEYWORD-LIST-END
-//============================
-// End of the keywords list
-//============================
 
 EQ  : '=' | '==';
 NSEQ: '<=>';
@@ -1196,9 +1146,6 @@ WS
     : [ \r\n\t]+ -> channel(HIDDEN)
     ;
 
-// Catch-all for anything we can't recognize.
-// We use this to be able to ignore and recover all the text
-// when splitting statements with DelimiterLexer
 UNRECOGNIZED
     : .
     ;

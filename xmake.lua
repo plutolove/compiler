@@ -15,7 +15,7 @@ add_requires("antlr4 v4.12.0")
 
 rule("dep_gen")
     before_build(function (target)
-      os.vrun("java -jar ./tools/antlr-4.12.0-complete.jar -visitor -no-listener -Dlanguage=Cpp -package sql ./src/parser/sql_parser.g4 -o ./")
+      os.vrun("java -jar ./tools/antlr-4.12.0-complete.jar -visitor -no-listener -Dlanguage=Cpp -package sql ./src/parser/SQLParser.g4 -o ./")
       -- os.vrun("mlir-tblgen  --gen-op-decls ./src/ops.td -o ./src/Ops.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
       -- os.vrun("mlir-tblgen  --gen-op-defs ./src/ops.td -o ./src/Ops.cpp.inc -I"..os.getenv("LLVM_ROOT").."/include/")
     end)

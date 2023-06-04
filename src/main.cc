@@ -17,7 +17,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
-
+#include "parser/SQLParserBaseVisitor.h"
 ABSL_FLAG(std::string, conf, "default", "conf path");
 
 int main(int argc, char** argvs) {

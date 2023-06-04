@@ -1,5 +1,5 @@
 
-// Generated from ./src/parser/sql_parser.g4 by ANTLR 4.12.0
+// Generated from ./src/parser/SQLParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -10,7 +10,7 @@
 namespace sql {
 
 
-class  sql_parserParser : public antlr4::Parser {
+class  SQLParserParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
@@ -96,11 +96,11 @@ public:
     RuleStrictNonReserved = 68, RuleNonReserved = 69
   };
 
-  explicit sql_parserParser(antlr4::TokenStream *input);
+  explicit SQLParserParser(antlr4::TokenStream *input);
 
-  sql_parserParser(antlr4::TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options);
+  SQLParserParser(antlr4::TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options);
 
-  ~sql_parserParser() override;
+  ~SQLParserParser() override;
 
   std::string getGrammarFileName() const override;
 
@@ -266,10 +266,10 @@ public:
 
   class  QueryOrganizationContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::SortItemContext *sortItemContext = nullptr;
+    SQLParserParser::SortItemContext *sortItemContext = nullptr;
     std::vector<SortItemContext *> order;
     std::vector<SortItemContext *> sort;
-    sql_parserParser::ExpressionContext *limit = nullptr;
+    SQLParserParser::ExpressionContext *limit = nullptr;
     QueryOrganizationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ORDER();
@@ -477,7 +477,7 @@ public:
 
   class  IdentifierSeqContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
     std::vector<ErrorCapturingIdentifierContext *> ident;
     IdentifierSeqContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
@@ -507,7 +507,7 @@ public:
 
   class  OrderedIdentifierContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *ident = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *ident = nullptr;
     antlr4::Token *ordering = nullptr;
     OrderedIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
@@ -626,7 +626,7 @@ public:
 
   class  MultipartIdentifierContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
     std::vector<ErrorCapturingIdentifierContext *> parts;
     MultipartIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
@@ -642,7 +642,7 @@ public:
 
   class  NamedExpressionContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *name = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
     NamedExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ExpressionContext *expression();
@@ -721,9 +721,9 @@ public:
   public:
     LogicalBinaryContext(BooleanExpressionContext *ctx);
 
-    sql_parserParser::BooleanExpressionContext *left = nullptr;
+    SQLParserParser::BooleanExpressionContext *left = nullptr;
     antlr4::Token *operator_ = nullptr;
-    sql_parserParser::BooleanExpressionContext *right = nullptr;
+    SQLParserParser::BooleanExpressionContext *right = nullptr;
     std::vector<BooleanExpressionContext *> booleanExpression();
     BooleanExpressionContext* booleanExpression(size_t i);
     antlr4::tree::TerminalNode *AND();
@@ -737,11 +737,11 @@ public:
   class  PredicateContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *kind = nullptr;
-    sql_parserParser::ValueExpressionContext *lower = nullptr;
-    sql_parserParser::ValueExpressionContext *upper = nullptr;
-    sql_parserParser::ValueExpressionContext *pattern = nullptr;
+    SQLParserParser::ValueExpressionContext *lower = nullptr;
+    SQLParserParser::ValueExpressionContext *upper = nullptr;
+    SQLParserParser::ValueExpressionContext *pattern = nullptr;
     antlr4::Token *escapeChar = nullptr;
-    sql_parserParser::ValueExpressionContext *right = nullptr;
+    SQLParserParser::ValueExpressionContext *right = nullptr;
     PredicateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *AND();
@@ -798,8 +798,8 @@ public:
   public:
     ComparisonContext(ValueExpressionContext *ctx);
 
-    sql_parserParser::ValueExpressionContext *left = nullptr;
-    sql_parserParser::ValueExpressionContext *right = nullptr;
+    SQLParserParser::ValueExpressionContext *left = nullptr;
+    SQLParserParser::ValueExpressionContext *right = nullptr;
     ComparisonOperatorContext *comparisonOperator();
     std::vector<ValueExpressionContext *> valueExpression();
     ValueExpressionContext* valueExpression(size_t i);
@@ -811,9 +811,9 @@ public:
   public:
     ArithmeticBinaryContext(ValueExpressionContext *ctx);
 
-    sql_parserParser::ValueExpressionContext *left = nullptr;
+    SQLParserParser::ValueExpressionContext *left = nullptr;
     antlr4::Token *operator_ = nullptr;
-    sql_parserParser::ValueExpressionContext *right = nullptr;
+    SQLParserParser::ValueExpressionContext *right = nullptr;
     std::vector<ValueExpressionContext *> valueExpression();
     ValueExpressionContext* valueExpression(size_t i);
     antlr4::tree::TerminalNode *ASTERISK();
@@ -862,7 +862,7 @@ public:
   public:
     StructContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::NamedExpressionContext *namedExpressionContext = nullptr;
+    SQLParserParser::NamedExpressionContext *namedExpressionContext = nullptr;
     std::vector<NamedExpressionContext *> argument;
     antlr4::tree::TerminalNode *STRUCT();
     std::vector<NamedExpressionContext *> namedExpression();
@@ -875,8 +875,8 @@ public:
   public:
     DereferenceContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::PrimaryExpressionContext *base = nullptr;
-    sql_parserParser::IdentifierContext *fieldName = nullptr;
+    SQLParserParser::PrimaryExpressionContext *base = nullptr;
+    SQLParserParser::IdentifierContext *fieldName = nullptr;
     PrimaryExpressionContext *primaryExpression();
     IdentifierContext *identifier();
 
@@ -887,8 +887,8 @@ public:
   public:
     SimpleCaseContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::ExpressionContext *value = nullptr;
-    sql_parserParser::ExpressionContext *elseExpression = nullptr;
+    SQLParserParser::ExpressionContext *value = nullptr;
+    SQLParserParser::ExpressionContext *elseExpression = nullptr;
     antlr4::tree::TerminalNode *CASE();
     antlr4::tree::TerminalNode *END();
     std::vector<ExpressionContext *> expression();
@@ -945,8 +945,8 @@ public:
   public:
     SubscriptContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::PrimaryExpressionContext *value = nullptr;
-    sql_parserParser::ValueExpressionContext *index = nullptr;
+    SQLParserParser::PrimaryExpressionContext *value = nullptr;
+    SQLParserParser::ValueExpressionContext *index = nullptr;
     PrimaryExpressionContext *primaryExpression();
     ValueExpressionContext *valueExpression();
 
@@ -1007,7 +1007,7 @@ public:
   public:
     FunctionCallContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::ExpressionContext *expressionContext = nullptr;
+    SQLParserParser::ExpressionContext *expressionContext = nullptr;
     std::vector<ExpressionContext *> argument;
     FunctionNameContext *functionName();
     std::vector<ExpressionContext *> expression();
@@ -1020,7 +1020,7 @@ public:
   public:
     SearchedCaseContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::ExpressionContext *elseExpression = nullptr;
+    SQLParserParser::ExpressionContext *elseExpression = nullptr;
     antlr4::tree::TerminalNode *CASE();
     antlr4::tree::TerminalNode *END();
     std::vector<WhenClauseContext *> whenClause();
@@ -1035,8 +1035,8 @@ public:
   public:
     PositionContext(PrimaryExpressionContext *ctx);
 
-    sql_parserParser::ValueExpressionContext *substr = nullptr;
-    sql_parserParser::ValueExpressionContext *str = nullptr;
+    SQLParserParser::ValueExpressionContext *substr = nullptr;
+    SQLParserParser::ValueExpressionContext *str = nullptr;
     antlr4::tree::TerminalNode *POSITION();
     antlr4::tree::TerminalNode *IN();
     std::vector<ValueExpressionContext *> valueExpression();
@@ -1234,7 +1234,7 @@ public:
 
   class  MultiUnitsIntervalContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::IdentifierContext *identifierContext = nullptr;
+    SQLParserParser::IdentifierContext *identifierContext = nullptr;
     std::vector<IdentifierContext *> unit;
     MultiUnitsIntervalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
@@ -1252,9 +1252,9 @@ public:
 
   class  ErrorCapturingUnitToUnitIntervalContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::UnitToUnitIntervalContext *body = nullptr;
-    sql_parserParser::MultiUnitsIntervalContext *error1 = nullptr;
-    sql_parserParser::UnitToUnitIntervalContext *error2 = nullptr;
+    SQLParserParser::UnitToUnitIntervalContext *body = nullptr;
+    SQLParserParser::MultiUnitsIntervalContext *error1 = nullptr;
+    SQLParserParser::UnitToUnitIntervalContext *error2 = nullptr;
     ErrorCapturingUnitToUnitIntervalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<UnitToUnitIntervalContext *> unitToUnitInterval();
@@ -1270,9 +1270,9 @@ public:
 
   class  UnitToUnitIntervalContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::IntervalValueContext *value = nullptr;
-    sql_parserParser::IdentifierContext *from = nullptr;
-    sql_parserParser::IdentifierContext *to = nullptr;
+    SQLParserParser::IntervalValueContext *value = nullptr;
+    SQLParserParser::IdentifierContext *from = nullptr;
+    SQLParserParser::IdentifierContext *to = nullptr;
     UnitToUnitIntervalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *TO();
@@ -1307,7 +1307,7 @@ public:
   class  ColPositionContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *position = nullptr;
-    sql_parserParser::ErrorCapturingIdentifierContext *afterCol = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *afterCol = nullptr;
     ColPositionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *FIRST();
@@ -1381,7 +1381,7 @@ public:
 
   class  QualifiedColTypeWithPositionContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::MultipartIdentifierContext *name = nullptr;
+    SQLParserParser::MultipartIdentifierContext *name = nullptr;
     QualifiedColTypeWithPositionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     DataTypeContext *dataType();
@@ -1414,7 +1414,7 @@ public:
 
   class  ColTypeContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *colName = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *colName = nullptr;
     ColTypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     DataTypeContext *dataType();
@@ -1463,8 +1463,8 @@ public:
 
   class  WhenClauseContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ExpressionContext *condition = nullptr;
-    sql_parserParser::ExpressionContext *result = nullptr;
+    SQLParserParser::ExpressionContext *condition = nullptr;
+    SQLParserParser::ExpressionContext *result = nullptr;
     WhenClauseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *WHEN();
@@ -1496,7 +1496,7 @@ public:
 
   class  NamedWindowContext : public antlr4::ParserRuleContext {
   public:
-    sql_parserParser::ErrorCapturingIdentifierContext *name = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
     NamedWindowContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *AS();
@@ -1527,7 +1527,7 @@ public:
   public:
     WindowRefContext(WindowSpecContext *ctx);
 
-    sql_parserParser::ErrorCapturingIdentifierContext *name = nullptr;
+    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
     ErrorCapturingIdentifierContext *errorCapturingIdentifier();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -1537,7 +1537,7 @@ public:
   public:
     WindowDefContext(WindowSpecContext *ctx);
 
-    sql_parserParser::ExpressionContext *expressionContext = nullptr;
+    SQLParserParser::ExpressionContext *expressionContext = nullptr;
     std::vector<ExpressionContext *> partition;
     antlr4::tree::TerminalNode *CLUSTER();
     std::vector<antlr4::tree::TerminalNode *> BY();
@@ -1560,8 +1560,8 @@ public:
   class  WindowFrameContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *frameType = nullptr;
-    sql_parserParser::FrameBoundContext *start = nullptr;
-    sql_parserParser::FrameBoundContext *end = nullptr;
+    SQLParserParser::FrameBoundContext *start = nullptr;
+    SQLParserParser::FrameBoundContext *end = nullptr;
     WindowFrameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *RANGE();
