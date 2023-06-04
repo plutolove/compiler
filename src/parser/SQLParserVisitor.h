@@ -22,11 +22,7 @@ public:
    */
     virtual std::any visitSingleStatement(SQLParserParser::SingleStatementContext *context) = 0;
 
-    virtual std::any visitSingleDataType(SQLParserParser::SingleDataTypeContext *context) = 0;
-
     virtual std::any visitStatementDefault(SQLParserParser::StatementDefaultContext *context) = 0;
-
-    virtual std::any visitCommentSpec(SQLParserParser::CommentSpecContext *context) = 0;
 
     virtual std::any visitQuery(SQLParserParser::QueryContext *context) = 0;
 
@@ -35,8 +31,6 @@ public:
     virtual std::any visitQueryTermDefault(SQLParserParser::QueryTermDefaultContext *context) = 0;
 
     virtual std::any visitQueryPrimaryDefault(SQLParserParser::QueryPrimaryDefaultContext *context) = 0;
-
-    virtual std::any visitTable(SQLParserParser::TableContext *context) = 0;
 
     virtual std::any visitSubquery(SQLParserParser::SubqueryContext *context) = 0;
 
@@ -61,10 +55,6 @@ public:
     virtual std::any visitOrderedIdentifierList(SQLParserParser::OrderedIdentifierListContext *context) = 0;
 
     virtual std::any visitOrderedIdentifier(SQLParserParser::OrderedIdentifierContext *context) = 0;
-
-    virtual std::any visitIdentifierCommentList(SQLParserParser::IdentifierCommentListContext *context) = 0;
-
-    virtual std::any visitIdentifierComment(SQLParserParser::IdentifierCommentContext *context) = 0;
 
     virtual std::any visitTableName(SQLParserParser::TableNameContext *context) = 0;
 
@@ -166,49 +156,15 @@ public:
 
     virtual std::any visitIntervalValue(SQLParserParser::IntervalValueContext *context) = 0;
 
-    virtual std::any visitColPosition(SQLParserParser::ColPositionContext *context) = 0;
-
     virtual std::any visitComplexDataType(SQLParserParser::ComplexDataTypeContext *context) = 0;
 
-    virtual std::any visitPrimitiveDataType(SQLParserParser::PrimitiveDataTypeContext *context) = 0;
-
-    virtual std::any visitQualifiedColTypeWithPositionList(SQLParserParser::QualifiedColTypeWithPositionListContext *context) = 0;
-
-    virtual std::any visitQualifiedColTypeWithPosition(SQLParserParser::QualifiedColTypeWithPositionContext *context) = 0;
-
-    virtual std::any visitColTypeList(SQLParserParser::ColTypeListContext *context) = 0;
-
-    virtual std::any visitColType(SQLParserParser::ColTypeContext *context) = 0;
-
-    virtual std::any visitComplexColTypeList(SQLParserParser::ComplexColTypeListContext *context) = 0;
-
-    virtual std::any visitComplexColType(SQLParserParser::ComplexColTypeContext *context) = 0;
-
     virtual std::any visitWhenClause(SQLParserParser::WhenClauseContext *context) = 0;
-
-    virtual std::any visitWindowClause(SQLParserParser::WindowClauseContext *context) = 0;
-
-    virtual std::any visitNamedWindow(SQLParserParser::NamedWindowContext *context) = 0;
-
-    virtual std::any visitWindowRef(SQLParserParser::WindowRefContext *context) = 0;
-
-    virtual std::any visitWindowDef(SQLParserParser::WindowDefContext *context) = 0;
-
-    virtual std::any visitWindowFrame(SQLParserParser::WindowFrameContext *context) = 0;
-
-    virtual std::any visitFrameBound(SQLParserParser::FrameBoundContext *context) = 0;
 
     virtual std::any visitQualifiedNameList(SQLParserParser::QualifiedNameListContext *context) = 0;
 
     virtual std::any visitFunctionName(SQLParserParser::FunctionNameContext *context) = 0;
 
     virtual std::any visitQualifiedName(SQLParserParser::QualifiedNameContext *context) = 0;
-
-    virtual std::any visitErrorCapturingIdentifier(SQLParserParser::ErrorCapturingIdentifierContext *context) = 0;
-
-    virtual std::any visitErrorIdent(SQLParserParser::ErrorIdentContext *context) = 0;
-
-    virtual std::any visitRealIdent(SQLParserParser::RealIdentContext *context) = 0;
 
     virtual std::any visitIdentifier(SQLParserParser::IdentifierContext *context) = 0;
 
@@ -231,8 +187,6 @@ public:
     virtual std::any visitDoubleLiteral(SQLParserParser::DoubleLiteralContext *context) = 0;
 
     virtual std::any visitBigDecimalLiteral(SQLParserParser::BigDecimalLiteralContext *context) = 0;
-
-    virtual std::any visitAlterColumnAction(SQLParserParser::AlterColumnActionContext *context) = 0;
 
     virtual std::any visitAnsiNonReserved(SQLParserParser::AnsiNonReservedContext *context) = 0;
 

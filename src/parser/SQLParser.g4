@@ -5,16 +5,8 @@ singleStatement
     : statement ';'* EOF
     ;
 
-singleDataType
-    : dataType EOF
-    ;
-
 statement
     : query                                                            #statementDefault
-    ;
-
-commentSpec
-    : COMMENT STRING
     ;
 
 query
@@ -33,7 +25,6 @@ queryTerm
 
 queryPrimary
     : querySpecification                                                    #queryPrimaryDefault
-    | TABLE multipartIdentifier                                             #table
     | '(' query ')'                                                         #subquery
     ;
 
@@ -76,7 +67,7 @@ identifierList
     ;
 
 identifierSeq
-    : ident+=errorCapturingIdentifier (',' ident+=errorCapturingIdentifier)*
+    : ident+=identifier (',' ident+=identifier)*
     ;
 
 orderedIdentifierList
@@ -84,15 +75,7 @@ orderedIdentifierList
     ;
 
 orderedIdentifier
-    : ident=errorCapturingIdentifier ordering=(ASC | DESC)?
-    ;
-
-identifierCommentList
-    : '(' identifierComment (',' identifierComment)* ')'
-    ;
-
-identifierComment
-    : identifier commentSpec?
+    : ident=identifier ordering=(ASC | DESC)?
     ;
 
 relationPrimary
@@ -101,25 +84,20 @@ relationPrimary
     | '(' relation ')' tableAlias     #aliasedRelation
     ;
 
-
-
 tableAlias
     : (AS? strictIdentifier identifierList?)?
     ;
-
 
 multipartIdentifierList
     : multipartIdentifier (',' multipartIdentifier)*
     ;
 
 multipartIdentifier
-    : parts+=errorCapturingIdentifier ('.' parts+=errorCapturingIdentifier)*
+    : parts+=identifier ('.' parts+=identifier)*
     ;
 
-
-
 namedExpression
-    : expression (AS? (name=errorCapturingIdentifier | identifierList))?
+    : expression (AS? (name=identifier | identifierList))?
     ;
 
 namedExpressionSeq
@@ -230,75 +208,14 @@ intervalValue
     | STRING
     ;
 
-colPosition
-    : position=FIRST | position=AFTER afterCol=errorCapturingIdentifier
-    ;
 
 dataType
     : complex=ARRAY '<' dataType '>'                            #complexDataType
     | complex=MAP '<' dataType ',' dataType '>'                 #complexDataType
-    | complex=STRUCT ('<' complexColTypeList? '>' | NEQ)        #complexDataType
-    | identifier ('(' INTEGER_VALUE (',' INTEGER_VALUE)* ')')?  #primitiveDataType
-    ;
-
-qualifiedColTypeWithPositionList
-    : qualifiedColTypeWithPosition (',' qualifiedColTypeWithPosition)*
-    ;
-
-qualifiedColTypeWithPosition
-    : name=multipartIdentifier dataType (NOT NULL)? commentSpec? colPosition?
-    ;
-
-colTypeList
-    : colType (',' colType)*
-    ;
-
-colType
-    : colName=errorCapturingIdentifier dataType (NOT NULL)? commentSpec?
-    ;
-
-complexColTypeList
-    : complexColType (',' complexColType)*
-    ;
-
-complexColType
-    : identifier ':' dataType (NOT NULL)? commentSpec?
     ;
 
 whenClause
     : WHEN condition=expression THEN result=expression
-    ;
-
-windowClause
-    : WINDOW namedWindow (',' namedWindow)*
-    ;
-
-namedWindow
-    : name=errorCapturingIdentifier AS windowSpec
-    ;
-
-windowSpec
-    : name=errorCapturingIdentifier         #windowRef
-    | '('name=errorCapturingIdentifier')'   #windowRef
-    | '('
-      ( CLUSTER BY partition+=expression (',' partition+=expression)*
-      | ((PARTITION | DISTRIBUTE) BY partition+=expression (',' partition+=expression)*)?
-        ((ORDER | SORT) BY sortItem (',' sortItem)*)?)
-      windowFrame?
-      ')'                                   #windowDef
-    ;
-
-windowFrame
-    : frameType=RANGE start=frameBound
-    | frameType=ROWS start=frameBound
-    | frameType=RANGE BETWEEN start=frameBound AND end=frameBound
-    | frameType=ROWS BETWEEN start=frameBound AND end=frameBound
-    ;
-
-frameBound
-    : UNBOUNDED boundType=(PRECEDING | FOLLOWING)
-    | boundType=CURRENT ROW
-    | expression boundType=(PRECEDING | FOLLOWING)
     ;
 
 qualifiedNameList
@@ -316,18 +233,6 @@ qualifiedName
     : identifier ('.' identifier)*
     ;
 
-// this rule is used for explicitly capturing wrong identifiers such as test-table, which should actually be `test-table`
-// replace identifier with errorCapturingIdentifier where the immediate follow symbol is not an expression, otherwise
-// valid expressions such as "a-b" can be recognized as an identifier
-errorCapturingIdentifier
-    : identifier errorCapturingIdentifierExtra
-    ;
-
-// extra left-factoring grammar
-errorCapturingIdentifierExtra
-    : (MINUS identifier)+    #errorIdent
-    |                        #realIdent
-    ;
 
 identifier
     : strictIdentifier
@@ -353,13 +258,6 @@ number
     | MINUS? TINYINT_LITERAL          #tinyIntLiteral
     | MINUS? DOUBLE_LITERAL           #doubleLiteral
     | MINUS? BIGDECIMAL_LITERAL       #bigDecimalLiteral
-    ;
-
-alterColumnAction
-    : TYPE dataType
-    | commentSpec
-    | colPosition
-    | setOrDrop=(SET | DROP) NOT NULL
     ;
 
 ansiNonReserved

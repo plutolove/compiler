@@ -21,15 +21,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitSingleDataType(SQLParserParser::SingleDataTypeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitStatementDefault(SQLParserParser::StatementDefaultContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitCommentSpec(SQLParserParser::CommentSpecContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -46,10 +38,6 @@ public:
   }
 
   virtual std::any visitQueryPrimaryDefault(SQLParserParser::QueryPrimaryDefaultContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitTable(SQLParserParser::TableContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -98,14 +86,6 @@ public:
   }
 
   virtual std::any visitOrderedIdentifier(SQLParserParser::OrderedIdentifierContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIdentifierCommentList(SQLParserParser::IdentifierCommentListContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIdentifierComment(SQLParserParser::IdentifierCommentContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -309,67 +289,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitColPosition(SQLParserParser::ColPositionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitComplexDataType(SQLParserParser::ComplexDataTypeContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitPrimitiveDataType(SQLParserParser::PrimitiveDataTypeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitQualifiedColTypeWithPositionList(SQLParserParser::QualifiedColTypeWithPositionListContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitQualifiedColTypeWithPosition(SQLParserParser::QualifiedColTypeWithPositionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitColTypeList(SQLParserParser::ColTypeListContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitColType(SQLParserParser::ColTypeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitComplexColTypeList(SQLParserParser::ComplexColTypeListContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitComplexColType(SQLParserParser::ComplexColTypeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitWhenClause(SQLParserParser::WhenClauseContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitWindowClause(SQLParserParser::WindowClauseContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitNamedWindow(SQLParserParser::NamedWindowContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitWindowRef(SQLParserParser::WindowRefContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitWindowDef(SQLParserParser::WindowDefContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitWindowFrame(SQLParserParser::WindowFrameContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitFrameBound(SQLParserParser::FrameBoundContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -382,18 +306,6 @@ public:
   }
 
   virtual std::any visitQualifiedName(SQLParserParser::QualifiedNameContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitErrorCapturingIdentifier(SQLParserParser::ErrorCapturingIdentifierContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitErrorIdent(SQLParserParser::ErrorIdentContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitRealIdent(SQLParserParser::RealIdentContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -438,10 +350,6 @@ public:
   }
 
   virtual std::any visitBigDecimalLiteral(SQLParserParser::BigDecimalLiteralContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitAlterColumnAction(SQLParserParser::AlterColumnActionContext *ctx) override {
     return visitChildren(ctx);
   }
 

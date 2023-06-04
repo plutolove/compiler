@@ -14,86 +14,78 @@ class  SQLParserParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, ADD = 9, AFTER = 10, ALL = 11, ALTER = 12, ANALYZE = 13, AND = 14, 
-    ANTI = 15, ANY = 16, ARCHIVE = 17, ARRAY = 18, AS = 19, ASC = 20, AT = 21, 
-    AUTHORIZATION = 22, BETWEEN = 23, BOTH = 24, BUCKET = 25, BUCKETS = 26, 
-    BY = 27, CACHE = 28, CASCADE = 29, CASE = 30, CAST = 31, CHANGE = 32, 
-    CHECK = 33, CLEAR = 34, CLUSTER = 35, CLUSTERED = 36, CODEGEN = 37, 
-    COLLATE = 38, COLLECTION = 39, COLUMN = 40, COLUMNS = 41, COMMENT = 42, 
-    COMMIT = 43, COMPACT = 44, COMPACTIONS = 45, COMPUTE = 46, CONCATENATE = 47, 
-    CONSTRAINT = 48, COST = 49, CREATE = 50, CROSS = 51, CUBE = 52, CURRENT = 53, 
-    CURRENT_DATE = 54, CURRENT_TIME = 55, CURRENT_TIMESTAMP = 56, CURRENT_USER = 57, 
-    DATA = 58, DATABASE = 59, DATABASES = 60, DBPROPERTIES = 61, DEFINED = 62, 
-    DELETE = 63, DELIMITED = 64, DESC = 65, DESCRIBE = 66, DFS = 67, DIRECTORIES = 68, 
-    DIRECTORY = 69, DISTINCT = 70, DISTRIBUTE = 71, DIV = 72, DROP = 73, 
-    ELSE = 74, END = 75, ESCAPE = 76, ESCAPED = 77, EXCEPT = 78, EXCHANGE = 79, 
-    EXISTS = 80, EXPLAIN = 81, EXPORT = 82, EXTENDED = 83, EXTERNAL = 84, 
-    EXTRACT = 85, FALSE = 86, FETCH = 87, FIELDS = 88, FILTER = 89, FILEFORMAT = 90, 
-    FIRST = 91, FOLLOWING = 92, FOR = 93, FOREIGN = 94, FORMAT = 95, FORMATTED = 96, 
-    FROM = 97, FULL = 98, FUNCTION = 99, FUNCTIONS = 100, GLOBAL = 101, 
-    GRANT = 102, GROUP = 103, GROUPING = 104, HAVING = 105, IF = 106, IGNORE = 107, 
-    IMPORT = 108, IN = 109, INDEX = 110, INDEXES = 111, INNER = 112, INPATH = 113, 
-    INPUTFORMAT = 114, INSERT = 115, INTERSECT = 116, INTERVAL = 117, INTO = 118, 
-    IS = 119, ITEMS = 120, JOIN = 121, KEYS = 122, LAST = 123, LATERAL = 124, 
-    LAZY = 125, LEADING = 126, LEFT = 127, LIKE = 128, LIMIT = 129, LINES = 130, 
-    LIST = 131, LOAD = 132, LOCAL = 133, LOCATION = 134, LOCK = 135, LOCKS = 136, 
-    LOGICAL = 137, MACRO = 138, MAP = 139, MATCHED = 140, MERGE = 141, MSCK = 142, 
-    NAMESPACE = 143, NAMESPACES = 144, NATURAL = 145, NO = 146, NOT = 147, 
-    NULL_ = 148, NULLS = 149, OF = 150, ON = 151, ONLY = 152, OPTION = 153, 
-    OPTIONS = 154, OR = 155, ORDER = 156, OUT = 157, OUTER = 158, OUTPUTFORMAT = 159, 
-    OVER = 160, OVERLAPS = 161, OVERLAY = 162, OVERWRITE = 163, PARTITION = 164, 
-    PARTITIONED = 165, PARTITIONS = 166, PERCENTLIT = 167, PIVOT = 168, 
-    PLACING = 169, POSITION = 170, PRECEDING = 171, PRIMARY = 172, PRINCIPALS = 173, 
-    PROPERTIES = 174, PURGE = 175, QUERY = 176, RANGE = 177, RECORDREADER = 178, 
-    RECORDWRITER = 179, RECOVER = 180, REDUCE = 181, REFERENCES = 182, REFRESH = 183, 
-    RENAME = 184, REPAIR = 185, REPLACE = 186, RESET = 187, RESTRICT = 188, 
-    REVOKE = 189, RIGHT = 190, RLIKE = 191, ROLE = 192, ROLES = 193, ROLLBACK = 194, 
-    ROLLUP = 195, ROW = 196, ROWS = 197, SCHEMA = 198, SELECT = 199, SEMI = 200, 
-    SEPARATED = 201, SERDE = 202, SERDEPROPERTIES = 203, SESSION_USER = 204, 
-    SET = 205, SETMINUS = 206, SETS = 207, SHOW = 208, SKEWED = 209, SOME = 210, 
-    SORT = 211, SORTED = 212, START = 213, STATISTICS = 214, STORED = 215, 
-    STRATIFY = 216, STRUCT = 217, SUBSTR = 218, SUBSTRING = 219, TABLE = 220, 
-    TABLES = 221, TABLESAMPLE = 222, TBLPROPERTIES = 223, TEMPORARY = 224, 
-    TERMINATED = 225, THEN = 226, TO = 227, TOUCH = 228, TRAILING = 229, 
-    TRANSACTION = 230, TRANSACTIONS = 231, TRANSFORM = 232, TRIM = 233, 
-    TRUE = 234, TRUNCATE = 235, TYPE = 236, UNARCHIVE = 237, UNBOUNDED = 238, 
-    UNCACHE = 239, UNION = 240, UNIQUE = 241, UNKNOWN = 242, UNLOCK = 243, 
-    UNSET = 244, UPDATE = 245, USE = 246, USER = 247, USING = 248, VALUES = 249, 
-    VIEW = 250, VIEWS = 251, WHEN = 252, WHERE = 253, WINDOW = 254, WITH = 255, 
-    EQ = 256, NSEQ = 257, NEQ = 258, NEQJ = 259, LT = 260, LTE = 261, GT = 262, 
-    GTE = 263, PLUS = 264, MINUS = 265, ASTERISK = 266, SLASH = 267, PERCENT = 268, 
-    TILDE = 269, AMPERSAND = 270, PIPE = 271, CONCAT_PIPE = 272, HAT = 273, 
-    STRING = 274, BIGINT_LITERAL = 275, SMALLINT_LITERAL = 276, TINYINT_LITERAL = 277, 
-    INTEGER_VALUE = 278, EXPONENT_VALUE = 279, DECIMAL_VALUE = 280, DOUBLE_LITERAL = 281, 
-    BIGDECIMAL_LITERAL = 282, IDENTIFIER = 283, BACKQUOTED_IDENTIFIER = 284, 
-    SIMPLE_COMMENT = 285, BRACKETED_EMPTY_COMMENT = 286, BRACKETED_COMMENT = 287, 
-    WS = 288, UNRECOGNIZED = 289
+    ADD = 8, AFTER = 9, ALL = 10, ALTER = 11, ANALYZE = 12, AND = 13, ANTI = 14, 
+    ANY = 15, ARCHIVE = 16, ARRAY = 17, AS = 18, ASC = 19, AT = 20, AUTHORIZATION = 21, 
+    BETWEEN = 22, BOTH = 23, BUCKET = 24, BUCKETS = 25, BY = 26, CACHE = 27, 
+    CASCADE = 28, CASE = 29, CAST = 30, CHANGE = 31, CHECK = 32, CLEAR = 33, 
+    CLUSTER = 34, CLUSTERED = 35, CODEGEN = 36, COLLATE = 37, COLLECTION = 38, 
+    COLUMN = 39, COLUMNS = 40, COMMENT = 41, COMMIT = 42, COMPACT = 43, 
+    COMPACTIONS = 44, COMPUTE = 45, CONCATENATE = 46, CONSTRAINT = 47, COST = 48, 
+    CREATE = 49, CROSS = 50, CUBE = 51, CURRENT = 52, CURRENT_DATE = 53, 
+    CURRENT_TIME = 54, CURRENT_TIMESTAMP = 55, CURRENT_USER = 56, DATA = 57, 
+    DATABASE = 58, DATABASES = 59, DBPROPERTIES = 60, DEFINED = 61, DELETE = 62, 
+    DELIMITED = 63, DESC = 64, DESCRIBE = 65, DFS = 66, DIRECTORIES = 67, 
+    DIRECTORY = 68, DISTINCT = 69, DISTRIBUTE = 70, DIV = 71, DROP = 72, 
+    ELSE = 73, END = 74, ESCAPE = 75, ESCAPED = 76, EXCEPT = 77, EXCHANGE = 78, 
+    EXISTS = 79, EXPLAIN = 80, EXPORT = 81, EXTENDED = 82, EXTERNAL = 83, 
+    EXTRACT = 84, FALSE = 85, FETCH = 86, FIELDS = 87, FILTER = 88, FILEFORMAT = 89, 
+    FIRST = 90, FOLLOWING = 91, FOR = 92, FOREIGN = 93, FORMAT = 94, FORMATTED = 95, 
+    FROM = 96, FULL = 97, FUNCTION = 98, FUNCTIONS = 99, GLOBAL = 100, GRANT = 101, 
+    GROUP = 102, GROUPING = 103, HAVING = 104, IF = 105, IGNORE = 106, IMPORT = 107, 
+    IN = 108, INDEX = 109, INDEXES = 110, INNER = 111, INPATH = 112, INPUTFORMAT = 113, 
+    INSERT = 114, INTERSECT = 115, INTERVAL = 116, INTO = 117, IS = 118, 
+    ITEMS = 119, JOIN = 120, KEYS = 121, LAST = 122, LATERAL = 123, LAZY = 124, 
+    LEADING = 125, LEFT = 126, LIKE = 127, LIMIT = 128, LINES = 129, LIST = 130, 
+    LOAD = 131, LOCAL = 132, LOCATION = 133, LOCK = 134, LOCKS = 135, LOGICAL = 136, 
+    MACRO = 137, MAP = 138, MATCHED = 139, MERGE = 140, MSCK = 141, NAMESPACE = 142, 
+    NAMESPACES = 143, NATURAL = 144, NO = 145, NOT = 146, NULL_ = 147, NULLS = 148, 
+    OF = 149, ON = 150, ONLY = 151, OPTION = 152, OPTIONS = 153, OR = 154, 
+    ORDER = 155, OUT = 156, OUTER = 157, OUTPUTFORMAT = 158, OVER = 159, 
+    OVERLAPS = 160, OVERLAY = 161, OVERWRITE = 162, PARTITION = 163, PARTITIONED = 164, 
+    PARTITIONS = 165, PERCENTLIT = 166, PIVOT = 167, PLACING = 168, POSITION = 169, 
+    PRECEDING = 170, PRIMARY = 171, PRINCIPALS = 172, PROPERTIES = 173, 
+    PURGE = 174, QUERY = 175, RANGE = 176, RECORDREADER = 177, RECORDWRITER = 178, 
+    RECOVER = 179, REDUCE = 180, REFERENCES = 181, REFRESH = 182, RENAME = 183, 
+    REPAIR = 184, REPLACE = 185, RESET = 186, RESTRICT = 187, REVOKE = 188, 
+    RIGHT = 189, RLIKE = 190, ROLE = 191, ROLES = 192, ROLLBACK = 193, ROLLUP = 194, 
+    ROW = 195, ROWS = 196, SCHEMA = 197, SELECT = 198, SEMI = 199, SEPARATED = 200, 
+    SERDE = 201, SERDEPROPERTIES = 202, SESSION_USER = 203, SET = 204, SETMINUS = 205, 
+    SETS = 206, SHOW = 207, SKEWED = 208, SOME = 209, SORT = 210, SORTED = 211, 
+    START = 212, STATISTICS = 213, STORED = 214, STRATIFY = 215, STRUCT = 216, 
+    SUBSTR = 217, SUBSTRING = 218, TABLE = 219, TABLES = 220, TABLESAMPLE = 221, 
+    TBLPROPERTIES = 222, TEMPORARY = 223, TERMINATED = 224, THEN = 225, 
+    TO = 226, TOUCH = 227, TRAILING = 228, TRANSACTION = 229, TRANSACTIONS = 230, 
+    TRANSFORM = 231, TRIM = 232, TRUE = 233, TRUNCATE = 234, TYPE = 235, 
+    UNARCHIVE = 236, UNBOUNDED = 237, UNCACHE = 238, UNION = 239, UNIQUE = 240, 
+    UNKNOWN = 241, UNLOCK = 242, UNSET = 243, UPDATE = 244, USE = 245, USER = 246, 
+    USING = 247, VALUES = 248, VIEW = 249, VIEWS = 250, WHEN = 251, WHERE = 252, 
+    WINDOW = 253, WITH = 254, EQ = 255, NSEQ = 256, NEQ = 257, NEQJ = 258, 
+    LT = 259, LTE = 260, GT = 261, GTE = 262, PLUS = 263, MINUS = 264, ASTERISK = 265, 
+    SLASH = 266, PERCENT = 267, TILDE = 268, AMPERSAND = 269, PIPE = 270, 
+    CONCAT_PIPE = 271, HAT = 272, STRING = 273, BIGINT_LITERAL = 274, SMALLINT_LITERAL = 275, 
+    TINYINT_LITERAL = 276, INTEGER_VALUE = 277, EXPONENT_VALUE = 278, DECIMAL_VALUE = 279, 
+    DOUBLE_LITERAL = 280, BIGDECIMAL_LITERAL = 281, IDENTIFIER = 282, BACKQUOTED_IDENTIFIER = 283, 
+    SIMPLE_COMMENT = 284, BRACKETED_EMPTY_COMMENT = 285, BRACKETED_COMMENT = 286, 
+    WS = 287, UNRECOGNIZED = 288
   };
 
   enum {
-    RuleSingleStatement = 0, RuleSingleDataType = 1, RuleStatement = 2, 
-    RuleCommentSpec = 3, RuleQuery = 4, RuleQueryOrganization = 5, RuleQueryTerm = 6, 
-    RuleQueryPrimary = 7, RuleSortItem = 8, RuleQuerySpecification = 9, 
-    RuleSelectClause = 10, RuleWhereClause = 11, RuleFromClause = 12, RuleSetQuantifier = 13, 
-    RuleRelation = 14, RuleIdentifierList = 15, RuleIdentifierSeq = 16, 
-    RuleOrderedIdentifierList = 17, RuleOrderedIdentifier = 18, RuleIdentifierCommentList = 19, 
-    RuleIdentifierComment = 20, RuleRelationPrimary = 21, RuleTableAlias = 22, 
-    RuleMultipartIdentifierList = 23, RuleMultipartIdentifier = 24, RuleNamedExpression = 25, 
-    RuleNamedExpressionSeq = 26, RuleExpression = 27, RuleBooleanExpression = 28, 
-    RulePredicate = 29, RuleValueExpression = 30, RulePrimaryExpression = 31, 
-    RuleConstant = 32, RuleComparisonOperator = 33, RuleArithmeticOperator = 34, 
-    RulePredicateOperator = 35, RuleBooleanValue = 36, RuleInterval = 37, 
-    RuleErrorCapturingMultiUnitsInterval = 38, RuleMultiUnitsInterval = 39, 
-    RuleErrorCapturingUnitToUnitInterval = 40, RuleUnitToUnitInterval = 41, 
-    RuleIntervalValue = 42, RuleColPosition = 43, RuleDataType = 44, RuleQualifiedColTypeWithPositionList = 45, 
-    RuleQualifiedColTypeWithPosition = 46, RuleColTypeList = 47, RuleColType = 48, 
-    RuleComplexColTypeList = 49, RuleComplexColType = 50, RuleWhenClause = 51, 
-    RuleWindowClause = 52, RuleNamedWindow = 53, RuleWindowSpec = 54, RuleWindowFrame = 55, 
-    RuleFrameBound = 56, RuleQualifiedNameList = 57, RuleFunctionName = 58, 
-    RuleQualifiedName = 59, RuleErrorCapturingIdentifier = 60, RuleErrorCapturingIdentifierExtra = 61, 
-    RuleIdentifier = 62, RuleStrictIdentifier = 63, RuleQuotedIdentifier = 64, 
-    RuleNumber = 65, RuleAlterColumnAction = 66, RuleAnsiNonReserved = 67, 
-    RuleStrictNonReserved = 68, RuleNonReserved = 69
+    RuleSingleStatement = 0, RuleStatement = 1, RuleQuery = 2, RuleQueryOrganization = 3, 
+    RuleQueryTerm = 4, RuleQueryPrimary = 5, RuleSortItem = 6, RuleQuerySpecification = 7, 
+    RuleSelectClause = 8, RuleWhereClause = 9, RuleFromClause = 10, RuleSetQuantifier = 11, 
+    RuleRelation = 12, RuleIdentifierList = 13, RuleIdentifierSeq = 14, 
+    RuleOrderedIdentifierList = 15, RuleOrderedIdentifier = 16, RuleRelationPrimary = 17, 
+    RuleTableAlias = 18, RuleMultipartIdentifierList = 19, RuleMultipartIdentifier = 20, 
+    RuleNamedExpression = 21, RuleNamedExpressionSeq = 22, RuleExpression = 23, 
+    RuleBooleanExpression = 24, RulePredicate = 25, RuleValueExpression = 26, 
+    RulePrimaryExpression = 27, RuleConstant = 28, RuleComparisonOperator = 29, 
+    RuleArithmeticOperator = 30, RulePredicateOperator = 31, RuleBooleanValue = 32, 
+    RuleInterval = 33, RuleErrorCapturingMultiUnitsInterval = 34, RuleMultiUnitsInterval = 35, 
+    RuleErrorCapturingUnitToUnitInterval = 36, RuleUnitToUnitInterval = 37, 
+    RuleIntervalValue = 38, RuleDataType = 39, RuleWhenClause = 40, RuleQualifiedNameList = 41, 
+    RuleFunctionName = 42, RuleQualifiedName = 43, RuleIdentifier = 44, 
+    RuleStrictIdentifier = 45, RuleQuotedIdentifier = 46, RuleNumber = 47, 
+    RuleAnsiNonReserved = 48, RuleStrictNonReserved = 49, RuleNonReserved = 50
   };
 
   explicit SQLParserParser(antlr4::TokenStream *input);
@@ -114,9 +106,7 @@ public:
 
 
   class SingleStatementContext;
-  class SingleDataTypeContext;
   class StatementContext;
-  class CommentSpecContext;
   class QueryContext;
   class QueryOrganizationContext;
   class QueryTermContext;
@@ -132,8 +122,6 @@ public:
   class IdentifierSeqContext;
   class OrderedIdentifierListContext;
   class OrderedIdentifierContext;
-  class IdentifierCommentListContext;
-  class IdentifierCommentContext;
   class RelationPrimaryContext;
   class TableAliasContext;
   class MultipartIdentifierListContext;
@@ -156,30 +144,15 @@ public:
   class ErrorCapturingUnitToUnitIntervalContext;
   class UnitToUnitIntervalContext;
   class IntervalValueContext;
-  class ColPositionContext;
   class DataTypeContext;
-  class QualifiedColTypeWithPositionListContext;
-  class QualifiedColTypeWithPositionContext;
-  class ColTypeListContext;
-  class ColTypeContext;
-  class ComplexColTypeListContext;
-  class ComplexColTypeContext;
   class WhenClauseContext;
-  class WindowClauseContext;
-  class NamedWindowContext;
-  class WindowSpecContext;
-  class WindowFrameContext;
-  class FrameBoundContext;
   class QualifiedNameListContext;
   class FunctionNameContext;
   class QualifiedNameContext;
-  class ErrorCapturingIdentifierContext;
-  class ErrorCapturingIdentifierExtraContext;
   class IdentifierContext;
   class StrictIdentifierContext;
   class QuotedIdentifierContext;
   class NumberContext;
-  class AlterColumnActionContext;
   class AnsiNonReservedContext;
   class StrictNonReservedContext;
   class NonReservedContext; 
@@ -197,20 +170,6 @@ public:
   };
 
   SingleStatementContext* singleStatement();
-
-  class  SingleDataTypeContext : public antlr4::ParserRuleContext {
-  public:
-    SingleDataTypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    DataTypeContext *dataType();
-    antlr4::tree::TerminalNode *EOF();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  SingleDataTypeContext* singleDataType();
 
   class  StatementContext : public antlr4::ParserRuleContext {
   public:
@@ -235,20 +194,6 @@ public:
   };
 
   StatementContext* statement();
-
-  class  CommentSpecContext : public antlr4::ParserRuleContext {
-  public:
-    CommentSpecContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *COMMENT();
-    antlr4::tree::TerminalNode *STRING();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  CommentSpecContext* commentSpec();
 
   class  QueryContext : public antlr4::ParserRuleContext {
   public:
@@ -340,16 +285,6 @@ public:
     QueryPrimaryDefaultContext(QueryPrimaryContext *ctx);
 
     QuerySpecificationContext *querySpecification();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  TableContext : public QueryPrimaryContext {
-  public:
-    TableContext(QueryPrimaryContext *ctx);
-
-    antlr4::tree::TerminalNode *TABLE();
-    MultipartIdentifierContext *multipartIdentifier();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -477,12 +412,12 @@ public:
 
   class  IdentifierSeqContext : public antlr4::ParserRuleContext {
   public:
-    SQLParserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
-    std::vector<ErrorCapturingIdentifierContext *> ident;
+    SQLParserParser::IdentifierContext *identifierContext = nullptr;
+    std::vector<IdentifierContext *> ident;
     IdentifierSeqContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ErrorCapturingIdentifierContext *> errorCapturingIdentifier();
-    ErrorCapturingIdentifierContext* errorCapturingIdentifier(size_t i);
+    std::vector<IdentifierContext *> identifier();
+    IdentifierContext* identifier(size_t i);
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -507,11 +442,11 @@ public:
 
   class  OrderedIdentifierContext : public antlr4::ParserRuleContext {
   public:
-    SQLParserParser::ErrorCapturingIdentifierContext *ident = nullptr;
+    SQLParserParser::IdentifierContext *ident = nullptr;
     antlr4::Token *ordering = nullptr;
     OrderedIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
+    IdentifierContext *identifier();
     antlr4::tree::TerminalNode *ASC();
     antlr4::tree::TerminalNode *DESC();
 
@@ -521,34 +456,6 @@ public:
   };
 
   OrderedIdentifierContext* orderedIdentifier();
-
-  class  IdentifierCommentListContext : public antlr4::ParserRuleContext {
-  public:
-    IdentifierCommentListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<IdentifierCommentContext *> identifierComment();
-    IdentifierCommentContext* identifierComment(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  IdentifierCommentListContext* identifierCommentList();
-
-  class  IdentifierCommentContext : public antlr4::ParserRuleContext {
-  public:
-    IdentifierCommentContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    IdentifierContext *identifier();
-    CommentSpecContext *commentSpec();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  IdentifierCommentContext* identifierComment();
 
   class  RelationPrimaryContext : public antlr4::ParserRuleContext {
   public:
@@ -626,12 +533,12 @@ public:
 
   class  MultipartIdentifierContext : public antlr4::ParserRuleContext {
   public:
-    SQLParserParser::ErrorCapturingIdentifierContext *errorCapturingIdentifierContext = nullptr;
-    std::vector<ErrorCapturingIdentifierContext *> parts;
+    SQLParserParser::IdentifierContext *identifierContext = nullptr;
+    std::vector<IdentifierContext *> parts;
     MultipartIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ErrorCapturingIdentifierContext *> errorCapturingIdentifier();
-    ErrorCapturingIdentifierContext* errorCapturingIdentifier(size_t i);
+    std::vector<IdentifierContext *> identifier();
+    IdentifierContext* identifier(size_t i);
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -642,13 +549,13 @@ public:
 
   class  NamedExpressionContext : public antlr4::ParserRuleContext {
   public:
-    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
+    SQLParserParser::IdentifierContext *name = nullptr;
     NamedExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ExpressionContext *expression();
     IdentifierListContext *identifierList();
     antlr4::tree::TerminalNode *AS();
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
+    IdentifierContext *identifier();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -1304,23 +1211,6 @@ public:
 
   IntervalValueContext* intervalValue();
 
-  class  ColPositionContext : public antlr4::ParserRuleContext {
-  public:
-    antlr4::Token *position = nullptr;
-    SQLParserParser::ErrorCapturingIdentifierContext *afterCol = nullptr;
-    ColPositionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *FIRST();
-    antlr4::tree::TerminalNode *AFTER();
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ColPositionContext* colPosition();
-
   class  DataTypeContext : public antlr4::ParserRuleContext {
   public:
     DataTypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -1345,121 +1235,11 @@ public:
     antlr4::tree::TerminalNode *GT();
     antlr4::tree::TerminalNode *ARRAY();
     antlr4::tree::TerminalNode *MAP();
-    antlr4::tree::TerminalNode *STRUCT();
-    antlr4::tree::TerminalNode *NEQ();
-    ComplexColTypeListContext *complexColTypeList();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  PrimitiveDataTypeContext : public DataTypeContext {
-  public:
-    PrimitiveDataTypeContext(DataTypeContext *ctx);
-
-    IdentifierContext *identifier();
-    std::vector<antlr4::tree::TerminalNode *> INTEGER_VALUE();
-    antlr4::tree::TerminalNode* INTEGER_VALUE(size_t i);
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   DataTypeContext* dataType();
-
-  class  QualifiedColTypeWithPositionListContext : public antlr4::ParserRuleContext {
-  public:
-    QualifiedColTypeWithPositionListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<QualifiedColTypeWithPositionContext *> qualifiedColTypeWithPosition();
-    QualifiedColTypeWithPositionContext* qualifiedColTypeWithPosition(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  QualifiedColTypeWithPositionListContext* qualifiedColTypeWithPositionList();
-
-  class  QualifiedColTypeWithPositionContext : public antlr4::ParserRuleContext {
-  public:
-    SQLParserParser::MultipartIdentifierContext *name = nullptr;
-    QualifiedColTypeWithPositionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    DataTypeContext *dataType();
-    MultipartIdentifierContext *multipartIdentifier();
-    antlr4::tree::TerminalNode *NOT();
-    antlr4::tree::TerminalNode *NULL_();
-    CommentSpecContext *commentSpec();
-    ColPositionContext *colPosition();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  QualifiedColTypeWithPositionContext* qualifiedColTypeWithPosition();
-
-  class  ColTypeListContext : public antlr4::ParserRuleContext {
-  public:
-    ColTypeListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<ColTypeContext *> colType();
-    ColTypeContext* colType(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ColTypeListContext* colTypeList();
-
-  class  ColTypeContext : public antlr4::ParserRuleContext {
-  public:
-    SQLParserParser::ErrorCapturingIdentifierContext *colName = nullptr;
-    ColTypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    DataTypeContext *dataType();
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
-    antlr4::tree::TerminalNode *NOT();
-    antlr4::tree::TerminalNode *NULL_();
-    CommentSpecContext *commentSpec();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ColTypeContext* colType();
-
-  class  ComplexColTypeListContext : public antlr4::ParserRuleContext {
-  public:
-    ComplexColTypeListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<ComplexColTypeContext *> complexColType();
-    ComplexColTypeContext* complexColType(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ComplexColTypeListContext* complexColTypeList();
-
-  class  ComplexColTypeContext : public antlr4::ParserRuleContext {
-  public:
-    ComplexColTypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    IdentifierContext *identifier();
-    DataTypeContext *dataType();
-    antlr4::tree::TerminalNode *NOT();
-    antlr4::tree::TerminalNode *NULL_();
-    CommentSpecContext *commentSpec();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ComplexColTypeContext* complexColType();
 
   class  WhenClauseContext : public antlr4::ParserRuleContext {
   public:
@@ -1478,124 +1258,6 @@ public:
   };
 
   WhenClauseContext* whenClause();
-
-  class  WindowClauseContext : public antlr4::ParserRuleContext {
-  public:
-    WindowClauseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *WINDOW();
-    std::vector<NamedWindowContext *> namedWindow();
-    NamedWindowContext* namedWindow(size_t i);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  WindowClauseContext* windowClause();
-
-  class  NamedWindowContext : public antlr4::ParserRuleContext {
-  public:
-    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
-    NamedWindowContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *AS();
-    WindowSpecContext *windowSpec();
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  NamedWindowContext* namedWindow();
-
-  class  WindowSpecContext : public antlr4::ParserRuleContext {
-  public:
-    WindowSpecContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-   
-    WindowSpecContext() = default;
-    void copyFrom(WindowSpecContext *context);
-    using antlr4::ParserRuleContext::copyFrom;
-
-    virtual size_t getRuleIndex() const override;
-
-   
-  };
-
-  class  WindowRefContext : public WindowSpecContext {
-  public:
-    WindowRefContext(WindowSpecContext *ctx);
-
-    SQLParserParser::ErrorCapturingIdentifierContext *name = nullptr;
-    ErrorCapturingIdentifierContext *errorCapturingIdentifier();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  WindowDefContext : public WindowSpecContext {
-  public:
-    WindowDefContext(WindowSpecContext *ctx);
-
-    SQLParserParser::ExpressionContext *expressionContext = nullptr;
-    std::vector<ExpressionContext *> partition;
-    antlr4::tree::TerminalNode *CLUSTER();
-    std::vector<antlr4::tree::TerminalNode *> BY();
-    antlr4::tree::TerminalNode* BY(size_t i);
-    std::vector<ExpressionContext *> expression();
-    ExpressionContext* expression(size_t i);
-    WindowFrameContext *windowFrame();
-    std::vector<SortItemContext *> sortItem();
-    SortItemContext* sortItem(size_t i);
-    antlr4::tree::TerminalNode *PARTITION();
-    antlr4::tree::TerminalNode *DISTRIBUTE();
-    antlr4::tree::TerminalNode *ORDER();
-    antlr4::tree::TerminalNode *SORT();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  WindowSpecContext* windowSpec();
-
-  class  WindowFrameContext : public antlr4::ParserRuleContext {
-  public:
-    antlr4::Token *frameType = nullptr;
-    SQLParserParser::FrameBoundContext *start = nullptr;
-    SQLParserParser::FrameBoundContext *end = nullptr;
-    WindowFrameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *RANGE();
-    std::vector<FrameBoundContext *> frameBound();
-    FrameBoundContext* frameBound(size_t i);
-    antlr4::tree::TerminalNode *ROWS();
-    antlr4::tree::TerminalNode *BETWEEN();
-    antlr4::tree::TerminalNode *AND();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  WindowFrameContext* windowFrame();
-
-  class  FrameBoundContext : public antlr4::ParserRuleContext {
-  public:
-    antlr4::Token *boundType = nullptr;
-    FrameBoundContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *UNBOUNDED();
-    antlr4::tree::TerminalNode *PRECEDING();
-    antlr4::tree::TerminalNode *FOLLOWING();
-    antlr4::tree::TerminalNode *ROW();
-    antlr4::tree::TerminalNode *CURRENT();
-    ExpressionContext *expression();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  FrameBoundContext* frameBound();
 
   class  QualifiedNameListContext : public antlr4::ParserRuleContext {
   public:
@@ -1640,55 +1302,6 @@ public:
   };
 
   QualifiedNameContext* qualifiedName();
-
-  class  ErrorCapturingIdentifierContext : public antlr4::ParserRuleContext {
-  public:
-    ErrorCapturingIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    IdentifierContext *identifier();
-    ErrorCapturingIdentifierExtraContext *errorCapturingIdentifierExtra();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ErrorCapturingIdentifierContext* errorCapturingIdentifier();
-
-  class  ErrorCapturingIdentifierExtraContext : public antlr4::ParserRuleContext {
-  public:
-    ErrorCapturingIdentifierExtraContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-   
-    ErrorCapturingIdentifierExtraContext() = default;
-    void copyFrom(ErrorCapturingIdentifierExtraContext *context);
-    using antlr4::ParserRuleContext::copyFrom;
-
-    virtual size_t getRuleIndex() const override;
-
-   
-  };
-
-  class  ErrorIdentContext : public ErrorCapturingIdentifierExtraContext {
-  public:
-    ErrorIdentContext(ErrorCapturingIdentifierExtraContext *ctx);
-
-    std::vector<antlr4::tree::TerminalNode *> MINUS();
-    antlr4::tree::TerminalNode* MINUS(size_t i);
-    std::vector<IdentifierContext *> identifier();
-    IdentifierContext* identifier(size_t i);
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  RealIdentContext : public ErrorCapturingIdentifierExtraContext {
-  public:
-    RealIdentContext(ErrorCapturingIdentifierExtraContext *ctx);
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  ErrorCapturingIdentifierExtraContext* errorCapturingIdentifierExtra();
 
   class  IdentifierContext : public antlr4::ParserRuleContext {
   public:
@@ -1837,27 +1450,6 @@ public:
   };
 
   NumberContext* number();
-
-  class  AlterColumnActionContext : public antlr4::ParserRuleContext {
-  public:
-    antlr4::Token *setOrDrop = nullptr;
-    AlterColumnActionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *TYPE();
-    DataTypeContext *dataType();
-    CommentSpecContext *commentSpec();
-    ColPositionContext *colPosition();
-    antlr4::tree::TerminalNode *NOT();
-    antlr4::tree::TerminalNode *NULL_();
-    antlr4::tree::TerminalNode *SET();
-    antlr4::tree::TerminalNode *DROP();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  AlterColumnActionContext* alterColumnAction();
 
   class  AnsiNonReservedContext : public antlr4::ParserRuleContext {
   public:
