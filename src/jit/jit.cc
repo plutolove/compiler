@@ -49,7 +49,7 @@ class JITCompiler {
                       [&](const llvm::ErrorInfoBase &error_info) {
                         error_message = error_info.message();
                       });
-      throw sql::Exception(-1, "Cannot materialize module: {}", error_message);
+      ThrowException(-1, "Cannot materialize module: {}", error_message);
     }
 
     llvm::SmallVector<char, 4096> object_buffer;
@@ -60,7 +60,7 @@ class JITCompiler {
 
     if (target_machine.addPassesToEmitMC(pass_manager, machine_code_context,
                                          object_stream)) {
-      throw sql::Exception(-1, "MachineCode is not supported for the platform");
+      ThrowException(-1, "MachineCode is not supported for the platform");
     }
 
     pass_manager.run(module);
@@ -242,7 +242,7 @@ class JITSymbolResolver : public llvm::LegacyJITSymbolResolver {
   llvm::JITSymbol findSymbol(const std::string &Name) override {
     auto address_it = symbol_name_to_symbol_address.find(Name);
     if (address_it == symbol_name_to_symbol_address.end()) {
-      throw sql::Exception(-1, "symbol not found {}", Name);
+      ThrowException(-1, "symbol not found {}", Name);
     }
 
     uint64_t symbol_address = reinterpret_cast<uint64_t>(address_it->second);
@@ -324,9 +324,8 @@ SQLJit::CompiledModule SQLJit::compileModule(
                     [&](const llvm::ErrorInfoBase &error_info) {
                       error_message = error_info.message();
                     });
-    throw sql::Exception(-1,
-                         "Cannot create object file from compiled buffer: {}",
-                         error_message);
+    ThrowException(-1, "Cannot create object file from compiled buffer: {}",
+                   error_message);
   }
 
   std::unique_ptr<JITModuleMemoryManager> module_memory_manager =
@@ -350,8 +349,8 @@ SQLJit::CompiledModule SQLJit::compileModule(
     auto mangled_name = getMangledName(function_name);
     auto jit_symbol = dynamic_linker.getSymbol(mangled_name);
     if (not jit_symbol)
-      throw sql::Exception(-1, "not found symbol {} after compilation",
-                           function_name);
+      ThrowException(-1, "not found symbol {} after compilation",
+                     function_name);
     auto *jit_symbol_address =
         reinterpret_cast<void *>(jit_symbol.getAddress());
     compiled_module.function_name_to_symbol.emplace(std::move(function_name),
@@ -374,7 +373,7 @@ void SQLJit::deleteCompiledModule(const SQLJit::CompiledModule &module) {
 
   auto module_it = module_identifier_to_memory_manager.find(module.identifier);
   if (module_it == module_identifier_to_memory_manager.end()) {
-    throw sql::Exception(-1, "module not found");
+    ThrowException(-1, "module not found");
   }
   module_identifier_to_memory_manager.erase(module_it);
   compiled_code_size.fetch_sub(module.size, std::memory_order_relaxed);
@@ -436,7 +435,7 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
   auto triple = llvm::sys::getProcessTriple();
   const auto *target = llvm::TargetRegistry::lookupTarget(triple, error);
   if (!target) {
-    throw sql::Exception(-1, "Cannot find target triple");
+    ThrowException(-1, "Cannot find target triple");
   }
 
   llvm::SubtargetFeatures features;

@@ -14,12 +14,11 @@ std::enable_if_t<std::is_reference_v<To>, To> type_cast(From& from) {
     if ((typeid(From) == typeid(To)) || (typeid(from) == typeid(To)))
       return static_cast<To>(from);
   } catch (const std::exception& e) {
-    throw sql::Exception(-1, e.what());
+    ThrowException(-1, e.what());
   }
 
-  throw sql::Exception(-1, "Bad cast from type {} to {}",
-                       demangle(typeid(from).name()),
-                       demangle(typeid(To).name()));
+  ThrowException(-1, "Bad cast from type {} to {}",
+                 demangle(typeid(from).name()), demangle(typeid(To).name()));
 }
 
 template <typename To, typename From>
@@ -31,11 +30,10 @@ std::enable_if_t<std::is_pointer_v<To>, To> type_cast(From* from) {
     else
       return nullptr;
   } catch (const std::exception& e) {
-    throw sql::Exception(-1, e.what());
+    ThrowException(-1, e.what());
   }
-  throw sql::Exception(-1, "Bad cast from type {} to {}",
-                       demangle(typeid(from).name()),
-                       demangle(typeid(To).name()));
+  ThrowException(-1, "Bad cast from type {} to {}",
+                 demangle(typeid(from).name()), demangle(typeid(To).name()));
 }
 
 namespace detail {
@@ -61,9 +59,8 @@ std::enable_if_t<detail::is_shared_ptr_v<To>, To> type_cast(
     else
       return nullptr;
   } catch (const std::exception& e) {
-    throw sql::Exception(-1, e.what());
+    ThrowException(-1, e.what());
   }
-  throw sql::Exception(-1, "Bad cast from type {} to {}",
-                       demangle(typeid(from).name()),
-                       demangle(typeid(To).name()));
+  ThrowException(-1, "Bad cast from type {} to {}",
+                 demangle(typeid(from).name()), demangle(typeid(To).name()));
 }
