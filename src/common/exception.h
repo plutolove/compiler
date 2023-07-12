@@ -12,6 +12,14 @@ class Exception : public std::exception {
   Exception(int code, const std::string& fmt, Args&&... args)
       : Exception(fmt::format(fmt, std::forward<Args>(args)...), code) {}
 
+  template <typename... Args>
+  Exception(const std::string& file, const std::string& function, int64_t line,
+            int code, const std::string& fmt, Args&&... args)
+      : _code(code),
+        _msg(fmt::format("{}, file: {}, function: {}, line: {}", file, function,
+                         line, fmt::format(fmt, std::forward<Args>(args)...))) {
+  }
+
   Exception(const std::string& msg, int code) : _code(code), _msg(msg) {}
   Exception& operator=(const Exception& exc);
   virtual const char* name() const noexcept;
@@ -30,4 +38,7 @@ class Exception : public std::exception {
   Exception* _pNested{nullptr};
 };
 
-}  // namespace util
+}  // namespace sql
+
+#define ThrowException(...) \
+  (throw sql::Exception(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__))

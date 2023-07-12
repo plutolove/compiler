@@ -24,7 +24,6 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include <boost/noncopyable.hpp>
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
@@ -80,7 +79,7 @@ class JITCompiler {
   llvm::TargetMachine &target_machine;
 };
 
-class PageArena : private boost::noncopyable {
+class PageArena : private noncopyable {
  public:
   PageArena() : page_size(GetPageSize()) {}
 
@@ -453,7 +452,7 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
       llvm::CodeGenOpt::Aggressive, jit);
 
   if (!target_machine) {
-    throw sql::Exception(-1, "Cannot create target machine");
+    ThrowException(-1, "Cannot create target machine");
   }
 
   return std::unique_ptr<llvm::TargetMachine>(target_machine);

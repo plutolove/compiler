@@ -3,6 +3,8 @@ add_rules("mode.debug", "mode.release")
 set_languages("c++17")
 set_optimize("fastest")
 
+add_rules("plugin.compile_commands.autoupdate", {outputdir = ".vscode"})
+
 add_repositories("local-repo https://github.com/plutolove/xmake-repo.git")
 
 
